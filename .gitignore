@@ -3,3 +3,5 @@
 concept/
 export/
 *.afphoto
+*.exe
+*.app

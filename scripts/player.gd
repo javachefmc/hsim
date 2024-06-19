@@ -48,12 +48,16 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 const paused = false
 
+
+
 func _ready():
 	# Lock the mouse to the window center
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	# Prevents selecting self when doing functions with raycast
 	raycast.add_exception(hitbox)
+
+
 
 func _process(delta):
 	
@@ -98,14 +102,20 @@ func _process(delta):
 			
 	move_and_slide()
 
-# Calculate camera rotation
+
+
 func _unhandled_input(event):
+	
+	# Calculate camera rotation
 	if event is InputEventMouseMotion:
 		rotation_target.x -= event.relative.y * rotation_speed
 		rotation_target.x = clamp(rotation_target.x, -PI/2, PI/2)
 		rotation_target.y -= event.relative.x * rotation_speed
+	
+	# Perform all use checks
 	if Input.is_action_just_pressed("use"):
 		pick_object()
+
 
 func pick_object():
 	var collider = raycast.get_collider()
@@ -113,6 +123,7 @@ func pick_object():
 		print("picking object")
 		collider.get_parent().collect()
 		# Add collector here to determine what to do with collected item
+
 
 func damage(amount):
 	health -= amount

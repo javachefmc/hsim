@@ -15,8 +15,8 @@ class_name Player
 # PLAYER MOVEMENT
 
 # translation
-const SPEED = 2.5
-const RUN_MULT = 2
+const SPEED = 3.0
+const RUN_MULT = 1.75
 const JUMP_VELOCITY = 4.5
 const ACCEL = 0.1
 const FRICTION = 0.3
@@ -25,8 +25,8 @@ const AIR_RESISTANCE = 0.05
 # rotation
 var rotation_target : Vector3
 var rotation_smooth : Vector3
-var rotation_speed = 0.004
-var rotation_damp = 30
+const rotation_speed = 0.004
+const rotation_damp = 30
 
 ## ATTRIBUTES
 
@@ -49,14 +49,12 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 const paused = false
 
 
-
 func _ready():
 	# Lock the mouse to the window center
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	# Prevents selecting self when doing functions with raycast
 	raycast.add_exception(hitbox)
-
 
 
 func _process(delta):
@@ -103,7 +101,6 @@ func _process(delta):
 	move_and_slide()
 
 
-
 func _unhandled_input(event):
 	
 	# Calculate camera rotation
@@ -116,14 +113,12 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("use"):
 		pick_object()
 
-
 func pick_object():
 	var collider = raycast.get_collider()
 	if collider != null and collider is Area3D:
 		print("picking object")
 		collider.get_parent().collect()
 		# Add collector here to determine what to do with collected item
-
 
 func damage(amount):
 	health -= amount

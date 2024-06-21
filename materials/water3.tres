@@ -1,0 +1,40 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://c0q430tb61kcl"]
+
+[ext_resource type="Material" uid="uid://d2jvgknp5bmbc" path="res://materials/water2.tres" id="1_y8jhu"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fblug"]
+noise_type = 3
+frequency = 0.0008
+fractal_type = 2
+fractal_octaves = 4
+fractal_lacunarity = 3.0
+fractal_weighted_strength = 0.45
+domain_warp_type = 1
+domain_warp_amplitude = 20.0
+domain_warp_frequency = 0.02
+domain_warp_fractal_type = 2
+domain_warp_fractal_gain = 0.3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qr0qu"]
+seamless = true
+seamless_blend_skirt = 0.26
+as_normal_map = true
+bump_strength = 2.0
+noise = SubResource("FastNoiseLite_fblug")
+
+[resource]
+next_pass = ExtResource("1_y8jhu")
+diffuse_mode = 1
+albedo_color = Color(0.0117647, 0.0196078, 0.0196078, 1)
+metallic = 1.0
+metallic_specular = 0.0
+roughness = 0.03
+normal_enabled = true
+normal_scale = 2.0
+normal_texture = SubResource("NoiseTexture2D_qr0qu")
+clearcoat_roughness = 0.0
+anisotropy = -0.84
+subsurf_scatter_strength = 0.89
+backlight = Color(0.0235294, 0.498039, 0.827451, 1)
+uv1_triplanar = true
+uv1_world_triplanar = true

@@ -1,0 +1,102 @@
+[gd_scene load_steps=12 format=3 uid="uid://dn2f1majruqna"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_62vfs"]
+[ext_resource type="PackedScene" uid="uid://281otqko3fwv" path="res://scenes/environment_system.tscn" id="2_bhegv"]
+[ext_resource type="Texture2D" uid="uid://dtgo602nyfswh" path="res://images/texture/floor1.png" id="4_3x2vj"]
+[ext_resource type="PackedScene" uid="uid://cj7y674njk2f" path="res://scenes/player.tscn" id="4_iffes"]
+[ext_resource type="Texture2D" uid="uid://dw3x1wnn3tlac" path="res://images/texture/generic.png" id="5_37k43"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhbhj"]
+albedo_color = Color(0.215686, 0.215686, 0.215686, 1)
+albedo_texture = ExtResource("4_3x2vj")
+metallic_specular = 0.12
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_txqfh"]
+material = SubResource("StandardMaterial3D_vhbhj")
+size = Vector3(30, 0.25, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_10sut"]
+size = Vector3(30, 0.25, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4buad"]
+albedo_color = Color(0.764706, 0.764706, 0.764706, 1)
+albedo_texture = ExtResource("4_3x2vj")
+metallic_specular = 0.0
+heightmap_scale = 16.0
+heightmap_deep_parallax = true
+heightmap_min_layers = 4
+heightmap_max_layers = 10
+heightmap_texture = ExtResource("5_37k43")
+uv1_scale = Vector3(0.2, 0.2, 0.2)
+uv1_triplanar = true
+uv1_world_triplanar = true
+uv2_scale = Vector3(10, 10, 10)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_2btjv"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("StandardMaterial3D_4buad")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_134mu"]
+
+[node name="level_01" type="Node3D"]
+script = ExtResource("1_62vfs")
+
+[node name="EnvironmentSystem" parent="." instance=ExtResource("2_bhegv")]
+transform = Transform3D(0.805442, 0, 0.592674, 0, 1, 0, -0.592674, 0, 0.805442, 0, 0, 0)
+
+[node name="Player" parent="." instance=ExtResource("4_iffes")]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("BoxMesh_txqfh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_10sut")
+
+[node name="Buildings" type="Node3D" parent="."]
+
+[node name="Building" type="MeshInstance3D" parent="Buildings"]
+transform = Transform3D(6.16642, 0, 0, 0, 7.13009, 0, 0, 0, 6.86344, -7.51001, 3.27468, 7.73846)
+mesh = SubResource("BoxMesh_2btjv")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Buildings/Building"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building/StaticBody3D"]
+shape = SubResource("BoxShape3D_134mu")
+
+[node name="Building2" type="MeshInstance3D" parent="Buildings"]
+transform = Transform3D(6.16642, 0, 0, 0, 7.13009, 0, 0, 0, 6.86344, -2.80046, 3.27468, 3.79347)
+mesh = SubResource("BoxMesh_2btjv")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Buildings/Building2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building2/StaticBody3D"]
+shape = SubResource("BoxShape3D_134mu")
+
+[node name="Building3" type="MeshInstance3D" parent="Buildings"]
+transform = Transform3D(6.16642, 0, 0, 0, 7.13009, 0, 0, 0, 6.86344, -11.3404, 3.27468, -1.0992)
+mesh = SubResource("BoxMesh_2btjv")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Buildings/Building3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building3/StaticBody3D"]
+shape = SubResource("BoxShape3D_134mu")
+
+[node name="Building4" type="MeshInstance3D" parent="Buildings"]
+transform = Transform3D(6.16642, 0, 0, 0, 7.13009, 0, 0, 0, 6.86344, -4.66125, 3.27468, -11.5964)
+mesh = SubResource("BoxMesh_2btjv")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Buildings/Building4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building4/StaticBody3D"]
+shape = SubResource("BoxShape3D_134mu")

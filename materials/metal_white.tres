@@ -3,5 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://dw3x1wnn3tlac" path="res://images/texture/generic.png" id="1_1wwij"]
 
 [resource]
+albedo_color = Color(0.921569, 0.921569, 0.921569, 1)
 albedo_texture = ExtResource("1_1wwij")
-metallic_specular = 1.0
+metallic_specular = 0.3
+uv1_triplanar = true
+texture_filter = 0

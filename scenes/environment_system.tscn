@@ -9,11 +9,11 @@ metadata/_snap_enabled = true
 metadata/_snap_count = 12
 
 [sub_resource type="Curve" id="Curve_p65r8"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.200669, 0), 0.0, 0.0, 0, 0, Vector2(0.502304, 1), 0.0, 0.0, 0, 0, Vector2(0.799331, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.102151, 0), 0.0, 0.0, 0, 0, Vector2(0.502304, 1), 0.0, 0.0, 0, 0, Vector2(0.895161, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="Curve" id="Curve_jo6r3"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.200669, 1), 0.0, 0.0, 0, 0, Vector2(0.498328, 0), 0.0, 0.0, 0, 0, Vector2(0.799331, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0994624, 1), 0.0, 0.0, 0, 0, Vector2(0.498328, 0), 0.0, 0.0, 0, 0, Vector2(0.895161, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_w2k0d"]
@@ -52,7 +52,7 @@ fog_enabled = true
 fog_light_color = Color(0.313726, 0.407843, 0.509804, 1)
 fog_light_energy = 0.81
 fog_density = 0.003
-fog_sky_affect = 0.0
+fog_sky_affect = 0.1
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.003
 volumetric_fog_albedo = Color(0.529412, 0.603922, 0.662745, 1)
@@ -63,7 +63,7 @@ volumetric_fog_temporal_reprojection_amount = 0.878
 [sub_resource type="CameraAttributesPhysical" id="CameraAttributesPhysical_fw6i5"]
 auto_exposure_enabled = true
 auto_exposure_scale = 0.3
-auto_exposure_speed = 5.0
+auto_exposure_speed = 30.0
 frustum_focal_length = 50.0
 exposure_aperture = 22.0
 exposure_shutter_speed = 800.0

@@ -101,16 +101,15 @@ orientation = 1
 [node name="Main" type="Node3D"]
 script = ExtResource("1_gjpq4")
 
-[node name="gui_ingame" parent="." instance=ExtResource("1_l525m")]
-
 [node name="PostProcess" parent="." instance=ExtResource("2_voeam")]
 
+[node name="gui_ingame" parent="." instance=ExtResource("1_l525m")]
+
 [node name="EnvironmentSystem" parent="." instance=ExtResource("3_ngen7")]
-day_length = 120.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.70752, 0, -10.2292)
 
 [node name="FogVolume" type="FogVolume" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 2.82967, -32.2719)
-visible = false
 size = Vector3(111.721, 54.9076, 178.481)
 material = SubResource("FogMaterial_ljbrt")
 

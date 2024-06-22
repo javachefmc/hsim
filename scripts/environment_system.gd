@@ -34,4 +34,4 @@ func _process(delta):
 	moon.light_energy = moon_intensity.sample(time) * moon_max_energy
 	
 	# Disable lights when they are off
-	moon.visible = moon.light_energy > 0
+	# moon.visible = moon.light_energy > 0

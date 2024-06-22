@@ -17,14 +17,11 @@ var time_rate : float
 
 @onready var sun : DirectionalLight3D = $SunLight
 @onready var moon : DirectionalLight3D = $SunLight/MoonLight
-#@onready var environment : WorldEnvironment = $WorldEnvironment
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	time_rate = 1 / day_length
 	time = start_time
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += time_rate * delta
 	if time > 1:

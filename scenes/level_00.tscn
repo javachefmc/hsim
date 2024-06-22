@@ -106,6 +106,7 @@ script = ExtResource("1_gjpq4")
 [node name="PostProcess" parent="." instance=ExtResource("2_voeam")]
 
 [node name="EnvironmentSystem" parent="." instance=ExtResource("3_ngen7")]
+day_length = 120.0
 
 [node name="FogVolume" type="FogVolume" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 2.82967, -32.2719)

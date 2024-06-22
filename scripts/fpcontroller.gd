@@ -3,6 +3,7 @@ extends CharacterBody3D
 class_name FPController
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
 # HARDCODED PARAMETERS
 
 # translation
@@ -13,11 +14,24 @@ const ACCEL = 0.1
 const FRICTION = 0.3
 const AIR_RESISTANCE = 0.05
 
+# rotation
+var rotation_target : Vector3
+var rotation_smooth : Vector3
+const rotation_speed = 0.004
+const rotation_damp = 30
+
+# NEEDS TO BE SET AT RUNTIME
+
+@onready var head : Node3D
+@onready var animation_controller : AnimationPlayer
+
 func _process(delta):
 	var movement_speed = SPEED;
+	var running = false;
 	
 	# Adjust speed if running
 	if Input.is_action_pressed("run"):
+		running = true
 		movement_speed = SPEED * RUN_MULT
 	
 	# Add gravity
@@ -35,10 +49,10 @@ func _process(delta):
 	if direction:
 		velocity.x = lerp(velocity.x, direction.x * movement_speed, ACCEL)
 		velocity.z = lerp(velocity.z, direction.z * movement_speed, ACCEL)
-		#anim_player.play("view_bobbing")
+		animation_controller.play("run") if running else animation_controller.play("view_bobbing")
 		# animation player should be calculated when player actually moves rather than input controls
 	else:
-		#anim_player.stop()
+		animation_controller.stop()
 		if is_on_floor():
 			velocity.x = lerp(velocity.x, 0.0, FRICTION)
 			velocity.z = lerp(velocity.z, 0.0, FRICTION)
@@ -47,3 +61,16 @@ func _process(delta):
 			velocity.z = lerp(velocity.z, 0.0, AIR_RESISTANCE)
 			
 	move_and_slide()
+	
+	# Calculate look direction smoothly
+	rotation_smooth = rotation_smooth.lerp(rotation_target, delta * rotation_damp)
+	# Rotate character head and body. x: up-down, y: left-right
+	head.rotation.x = rotation_smooth.x
+	rotation.y = rotation_smooth.y
+	
+func _unhandled_input(event):
+	# Calculate camera rotation
+	if event is InputEventMouseMotion:
+		rotation_target.x -= event.relative.y * rotation_speed
+		rotation_target.x = clamp(rotation_target.x, -PI/2, PI/2)
+		rotation_target.y -= event.relative.x * rotation_speed

@@ -4,19 +4,13 @@ class_name Player
 
 # vars grabbing things from Player scene
 
-@onready var camera : Camera3D = $Camera3D
-@onready var anim_player : AnimationPlayer = $Camera3D/AnimationPlayer
+@onready var camera : Camera3D = $Head/Camera3D
+@onready var anim_player : AnimationPlayer = $Head/Camera3D/AnimationPlayer
 
-@onready var raycast : RayCast3D = $Camera3D/Raycast
-@onready var hitbox : Area3D = $Camera3D/PlayerHitbox
+@onready var raycast : RayCast3D = $Head/Raycast
+@onready var hitbox : Area3D = $Head/PlayerHitbox
 
 ## HARDCODED PARAMETERS
-
-# rotation
-var rotation_target : Vector3
-var rotation_smooth : Vector3
-const rotation_speed = 0.004
-const rotation_damp = 30
 
 ## ATTRIBUTES
 
@@ -34,28 +28,21 @@ const rotation_damp = 30
 signal healthChanged
 
 func _ready():
+	# Set head node for FPController
+	head = get_node("Head")
+	# Set animation controller for FPController
+	animation_controller = get_node("Head/Camera3D/AnimationPlayer")
 	# Prevents selecting self when doing functions with raycast
 	raycast.add_exception(hitbox)
 
 
 func _process(delta):
 	super(delta) # Run the process function for FPController
-	
-	# Calculate look direction smoothly
-	rotation_smooth = rotation_smooth.lerp(rotation_target, delta * rotation_damp)
-	# Rotate character left-right
-	rotation.y = rotation_smooth.y
-	# Rotate camera up-down
-	camera.rotation.x = rotation_smooth.x
 
 func _unhandled_input(event):
-	# Calculate camera rotation
-	if event is InputEventMouseMotion:
-		rotation_target.x -= event.relative.y * rotation_speed
-		rotation_target.x = clamp(rotation_target.x, -PI/2, PI/2)
-		rotation_target.y -= event.relative.x * rotation_speed
+	super(event) # Run input function for FPController
 	
-	# Perform all use checks
+	# Perform use checks
 	if Input.is_action_just_pressed("use"):
 		pick_object()
 

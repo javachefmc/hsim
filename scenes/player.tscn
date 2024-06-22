@@ -1,12 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://cj7y674njk2f"]
+[gd_scene load_steps=8 format=3 uid="uid://cj7y674njk2f"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_vgta6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6q654"]
 radius = 0.3
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_flwlo"]
+size = Vector3(0.2, 0.2, 3)
+
 [sub_resource type="Animation" id="Animation_jbaee"]
-length = 0.001
+length = 1.2
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -17,7 +21,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 1.5, 0)]
+"values": [Vector3(0, -0.0259259, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -29,12 +33,13 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0)]
+"values": [Vector3(-0.00452493, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_8xvec"]
 resource_name = "view_bobbing"
-length = 0.6
+length = 1.6
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -42,32 +47,59 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.286997, 0.37617, 0.6, 0.886997, 0.97617, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.8, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 1.5, 0), Vector3(0, 1.45, 0), Vector3(0, 1.4, 0), Vector3(0, 1.5, 0), Vector3(0, 1.45, 0), Vector3(0, 1.4, 0), Vector3(0, 1.5, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, -0.01, 0), Vector3(0, -0.02, 0), Vector3(0, 0, 0), Vector3(0, -0.01, 0), Vector3(0, -0.02, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.8, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": []
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.00349066, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(-0.00349066, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3234r"]
+resource_name = "run"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.01, 0), Vector3(0, -0.03, 0), Vector3(0, 0, 0), Vector3(0, -0.01, 0), Vector3(0, -0.03, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.00174533, 0, 0), Vector3(-0.00872665, 0, -0.00349066), Vector3(0, 0, 0), Vector3(-0.00174533, 0, 0), Vector3(-0.00872665, 0, 0.00349066)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dph83"]
 _data = {
 "RESET": SubResource("Animation_jbaee"),
+"run": SubResource("Animation_3234r"),
 "view_bobbing": SubResource("Animation_8xvec")
 }
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_flwlo"]
-size = Vector3(0.2, 0.2, 3)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_vgta6")
@@ -76,23 +108,26 @@ script = ExtResource("1_vgta6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_6q654")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera3D"]
-libraries = {
-"": SubResource("AnimationLibrary_dph83")
-}
-speed_scale = 1.4
-
-[node name="Raycast" type="RayCast3D" parent="Camera3D"]
+[node name="Raycast" type="RayCast3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, -3, 0)
 collide_with_areas = true
 collide_with_bodies = false
 
-[node name="PlayerHitbox" type="Area3D" parent="Camera3D"]
+[node name="PlayerHitbox" type="Area3D" parent="Head"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/PlayerHitbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/PlayerHitbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5022)
 shape = SubResource("BoxShape3D_flwlo")
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 0.99999, 0.00452491, 0, -0.00452491, 0.99999, 0, -0.0259259, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Head/Camera3D"]
+libraries = {
+"": SubResource("AnimationLibrary_dph83")
+}
+speed_scale = 1.4

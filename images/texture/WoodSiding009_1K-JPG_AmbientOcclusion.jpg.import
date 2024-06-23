@@ -2,7 +2,7 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://po0gvv502ek"
+uid="uid://dclpe0fyrjrpn"
 path.s3tc="res://.godot/imported/WoodSiding009_1K-JPG_AmbientOcclusion.jpg-40e8bdd650ea31b227854ecc176c3f6d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
@@ -25,7 +25,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=8
-roughness/src_normal="res://images/texture/WoodSiding009_1K-JPG_NormalDX.jpg"
+roughness/src_normal="res://images/texture/WoodSiding009_1K-JPG_NormalGL.jpg"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

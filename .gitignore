@@ -4,6 +4,7 @@ concept/
 export/
 # Custom ignores
 .idea/
+*.DS_Store
 *.afphoto
 *.exe
 *.app

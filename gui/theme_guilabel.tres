@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://xmikvoyiu0sc"]
 
-[ext_resource type="FontFile" uid="uid://c6fjvghxo6agw" path="res://gui/fonts/Xolonium-Regular.ttf" id="1_lwq0n"]
+[ext_resource type="FontFile" uid="uid://c6fjvghxo6agw" path="res://assets/fonts/Xolonium-Regular.ttf" id="1_lwq0n"]
 
 [resource]
 default_font = ExtResource("1_lwq0n")

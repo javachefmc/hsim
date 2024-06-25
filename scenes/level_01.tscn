@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dn2f1majruqna"]
+[gd_scene load_steps=13 format=3 uid="uid://dn2f1majruqna"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_62vfs"]
 [ext_resource type="PackedScene" uid="uid://281otqko3fwv" path="res://scenes/environment_system.tscn" id="2_bhegv"]
 [ext_resource type="Texture2D" uid="uid://dtgo602nyfswh" path="res://images/texture/floor1.png" id="4_3x2vj"]
 [ext_resource type="PackedScene" uid="uid://cj7y674njk2f" path="res://scenes/player.tscn" id="4_iffes"]
 [ext_resource type="Texture2D" uid="uid://dw3x1wnn3tlac" path="res://images/texture/generic.png" id="5_37k43"]
+[ext_resource type="AudioStream" uid="uid://qsrdwjewrdje" path="res://sounds/GP2-3-loop.wav" id="6_0tx11"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhbhj"]
 albedo_color = Color(0.215686, 0.215686, 0.215686, 1)
@@ -100,3 +101,10 @@ skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Buildings/Building4/StaticBody3D"]
 shape = SubResource("BoxShape3D_134mu")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.39218, 0, 0)
+stream = ExtResource("6_0tx11")
+max_db = 1.0
+autoplay = true
+doppler_tracking = 1

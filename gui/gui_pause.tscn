@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqi0nl1q1ofs7"]
+
+[ext_resource type="FontFile" uid="uid://od2eapwgv6f0" path="res://assets/fonts/Destroyed Aero.ttf" id="1_1ixjj"]
+[ext_resource type="Script" path="res://scripts/gui_pause.gd" id="1_51ixd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5udc8"]
+font = ExtResource("1_1ixjj")
+font_size = 128
+
+[node name="gui_pause" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_51ixd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.678431)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_top = 186.0
+offset_right = 180.0
+offset_bottom = 317.0
+grow_horizontal = 2
+text = "Paused"
+label_settings = SubResource("LabelSettings_5udc8")

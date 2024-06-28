@@ -1,0 +1,163 @@
+[gd_scene load_steps=4 format=3 uid="uid://bg5snlonsknw5"]
+
+[ext_resource type="Theme" uid="uid://xmikvoyiu0sc" path="res://gui/theme_guilabel.tres" id="1_p2i0g"]
+[ext_resource type="Theme" uid="uid://jibybwlkv8uu" path="res://gui/theme_guibar.tres" id="2_454lu"]
+[ext_resource type="Script" path="res://scripts/bar_hp.gd" id="3_puy4y"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="hbox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -207.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = 187.0
+grow_horizontal = 0
+theme_override_constants/separation = 20
+
+[node name="PositiveStats" type="HBoxContainer" parent="hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Labels" type="VBoxContainer" parent="hbox/PositiveStats"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="label_hp" type="Label" parent="hbox/PositiveStats/Labels"]
+custom_minimum_size = Vector2(0, 21)
+layout_mode = 2
+theme = ExtResource("1_p2i0g")
+text = "hp"
+horizontal_alignment = 2
+
+[node name="label_food" type="Label" parent="hbox/PositiveStats/Labels"]
+custom_minimum_size = Vector2(0, 21)
+layout_mode = 2
+theme = ExtResource("1_p2i0g")
+text = "food"
+horizontal_alignment = 2
+
+[node name="label_water" type="Label" parent="hbox/PositiveStats/Labels"]
+custom_minimum_size = Vector2(0, 21)
+layout_mode = 2
+theme = ExtResource("1_p2i0g")
+text = "water"
+horizontal_alignment = 2
+
+[node name="label_energy" type="Label" parent="hbox/PositiveStats/Labels"]
+custom_minimum_size = Vector2(0, 21)
+layout_mode = 2
+theme = ExtResource("1_p2i0g")
+text = "energy"
+horizontal_alignment = 2
+
+[node name="Bars" type="VBoxContainer" parent="hbox/PositiveStats"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 9
+
+[node name="bar_hp" type="ProgressBar" parent="hbox/PositiveStats/Bars"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+theme = ExtResource("2_454lu")
+value = 50.0
+show_percentage = false
+script = ExtResource("3_puy4y")
+
+[node name="bar_food" type="ProgressBar" parent="hbox/PositiveStats/Bars"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+theme = ExtResource("2_454lu")
+show_percentage = false
+
+[node name="bar_water" type="ProgressBar" parent="hbox/PositiveStats/Bars"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+theme = ExtResource("2_454lu")
+show_percentage = false
+
+[node name="bar_energy" type="ProgressBar" parent="hbox/PositiveStats/Bars"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+theme = ExtResource("2_454lu")
+show_percentage = false
+
+[node name="NegativeStats" type="HBoxContainer" parent="hbox"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Labels" type="VBoxContainer" parent="hbox/NegativeStats"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="label_cold" type="Label" parent="hbox/NegativeStats/Labels"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme = ExtResource("1_p2i0g")
+text = "cold
+"
+horizontal_alignment = 2
+
+[node name="label_nausea" type="Label" parent="hbox/NegativeStats/Labels"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme = ExtResource("1_p2i0g")
+text = "nausea"
+horizontal_alignment = 2
+
+[node name="label_dirtiness" type="Label" parent="hbox/NegativeStats/Labels"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme = ExtResource("1_p2i0g")
+text = "dirtiness"
+horizontal_alignment = 2
+
+[node name="label_urine" type="Label" parent="hbox/NegativeStats/Labels"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme = ExtResource("1_p2i0g")
+text = "urine"
+horizontal_alignment = 2
+
+[node name="Bars" type="VBoxContainer" parent="hbox/NegativeStats"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 7
+
+[node name="bar_cold" type="ProgressBar" parent="hbox/NegativeStats/Bars"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme = ExtResource("2_454lu")
+value = 50.0
+show_percentage = false
+
+[node name="bar_nausea" type="ProgressBar" parent="hbox/NegativeStats/Bars"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme = ExtResource("2_454lu")
+show_percentage = false
+
+[node name="bar_dirtiness" type="ProgressBar" parent="hbox/NegativeStats/Bars"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme = ExtResource("2_454lu")
+show_percentage = false
+
+[node name="bar_urine" type="ProgressBar" parent="hbox/NegativeStats/Bars"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+theme = ExtResource("2_454lu")
+show_percentage = false

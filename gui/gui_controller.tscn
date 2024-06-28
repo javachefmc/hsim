@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckpl75ancx1nh"]
+
+[ext_resource type="Script" path="res://scripts/gui_controller.gd" id="1_xtbgr"]
+
+[node name="gui_controller" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_xtbgr")

@@ -9,11 +9,15 @@ var last_event_pos2D := Vector2()
 ## The time of the last event in seconds since engine start.
 var last_event_time := -1.0
 
+@export var gui : PackedScene
+
 @onready var node_viewport: SubViewport = $SubViewport
 @onready var node_quad: MeshInstance3D = $Quad
 @onready var node_area: Area3D = $Quad/Area3D
 
 func _ready() -> void:
+	$SubViewport.add_child(gui.instantiate())
+	
 	node_area.mouse_entered.connect(_mouse_entered_area)
 	node_area.mouse_exited.connect(_mouse_exited_area)
 	node_area.input_event.connect(_mouse_input_event)

@@ -2,14 +2,20 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8pj2"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
+corner_detail = 3
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_riimw"]
 bg_color = Color(1, 1, 1, 1)
+corner_detail = 2
 
 [resource]
 ProgressBar/styles/background = SubResource("StyleBoxFlat_b8pj2")

@@ -2,13 +2,21 @@ extends Node
 
 class_name Level
 
-var player = Player.new()
+@export var playerScene : PackedScene
+@export var start_pos : Vector3
 
-# Called when the node enters the scene tree for the first time.
+@export var pausable : bool = true
+var paused : bool = false
+
+var player : Player
+
 func _ready():
-	# Capture mouse
+	# instantiate and create a player
+	player = playerScene.instantiate()
+	add_child(player)
+	
+	# set player position to start pos
+	player.position = start_pos
+	
+	# capture mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass

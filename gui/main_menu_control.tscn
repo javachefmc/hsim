@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://bssqn6osvqek2"]
 
-[ext_resource type="FontFile" uid="uid://du68wj6r6jpyj" path="res://assets/fonts/libel-suit-rg.otf" id="1_j3n2u"]
+[ext_resource type="FontFile" uid="uid://brk4uxm3tjto7" path="res://assets/fonts/PolisRegular.otf" id="1_himju"]
 [ext_resource type="Theme" uid="uid://doghuh3mastvc" path="res://gui/theme_mainmenubutton.tres" id="2_hk1y0"]
 
 [sub_resource type="Theme" id="Theme_q5i1f"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_rghbe"]
-font = ExtResource("1_j3n2u")
-font_size = 128
+font = ExtResource("1_himju")
+font_size = 180
 font_color = Color(0.858824, 0.439216, 0.439216, 1)
 
 [node name="MainMenuControl" type="Control"]
@@ -24,8 +24,8 @@ grow_vertical = 2
 layout_mode = 0
 offset_left = 73.0
 offset_top = 168.0
-offset_right = 598.0
-offset_bottom = 323.0
+offset_right = 550.0
+offset_bottom = 280.0
 theme = SubResource("Theme_q5i1f")
 text = "Rock Bottom"
 label_settings = SubResource("LabelSettings_rghbe")

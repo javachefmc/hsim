@@ -12,6 +12,8 @@ class_name Player
 
 ## ATTRIBUTES
 
+@export var inventory : Inv
+
 const max_param : int = 100
 
 ## Adjustable parameters (appear as bars)

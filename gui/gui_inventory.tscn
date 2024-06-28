@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=3 uid="uid://8dt26jwv2f65"]
+
+[ext_resource type="Script" path="res://scripts/gui_inventory.gd" id="1_udv5f"]
+[ext_resource type="PackedScene" uid="uid://dd2ve2ebs7rd1" path="res://gui/gui_inventory_slot.tscn" id="2_8cee4"]
+
+[node name="gui_inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_udv5f")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.627451)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 358.0
+offset_right = 846.0
+offset_bottom = 666.0
+columns = 5
+
+[node name="gui_inventory_slot1" parent="GridContainer" instance=ExtResource("2_8cee4")]
+layout_mode = 2
+
+[node name="gui_inventory_slot2" parent="GridContainer" instance=ExtResource("2_8cee4")]
+layout_mode = 2
+
+[node name="gui_inventory_slot3" parent="GridContainer" instance=ExtResource("2_8cee4")]
+layout_mode = 2
+
+[node name="gui_inventory_slot4" parent="GridContainer" instance=ExtResource("2_8cee4")]
+layout_mode = 2
+
+[node name="gui_inventory_slot5" parent="GridContainer" instance=ExtResource("2_8cee4")]
+layout_mode = 2
+
+[node name="gui_inventory_slot6" parent="GridContainer" instance=ExtResource("2_8cee4")]
+layout_mode = 2
+
+[node name="gui_inventory_slot7" parent="GridContainer" instance=ExtResource("2_8cee4")]
+layout_mode = 2
+
+[node name="gui_inventory_slot8" parent="GridContainer" instance=ExtResource("2_8cee4")]
+layout_mode = 2
+
+[node name="gui_inventory_slot9" parent="GridContainer" instance=ExtResource("2_8cee4")]
+layout_mode = 2
+
+[node name="gui_inventory_slot10" parent="GridContainer" instance=ExtResource("2_8cee4")]
+layout_mode = 2
+
+[node name="gui_inventory_slot11" parent="GridContainer" instance=ExtResource("2_8cee4")]
+layout_mode = 2
+
+[node name="gui_inventory_slot12" parent="GridContainer" instance=ExtResource("2_8cee4")]
+layout_mode = 2
+
+[node name="gui_inventory_slot13" parent="GridContainer" instance=ExtResource("2_8cee4")]
+layout_mode = 2
+
+[node name="gui_inventory_slot14" parent="GridContainer" instance=ExtResource("2_8cee4")]
+layout_mode = 2
+
+[node name="gui_inventory_slot15" parent="GridContainer" instance=ExtResource("2_8cee4")]
+layout_mode = 2

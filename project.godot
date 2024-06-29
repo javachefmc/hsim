@@ -11,11 +11,15 @@ config_version=5
 [application]
 
 config/name="Homeless Simulator"
-run/main_scene="res://scenes/level_00.tscn"
+run/main_scene="res://gui/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
-boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
+boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://scripts/global.gd"
 
 [display]
 

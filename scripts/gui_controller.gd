@@ -1,5 +1,7 @@
 extends Control
 
+class_name GUI_Controller
+
 var paused = false
 var inUI = false
 var inInventory = false
@@ -8,9 +10,11 @@ var inInventory = false
 @onready var gui_inventory : GUI_Inventory = $"../gui_inventory"
 
 func _ready():
-	pass # Replace with function body.
+	gui_pause.connect("resume_pressed", resume) # This allows button press to function identically to keybind
+	gui_pause.connect("exit_pressed", quitToTitle)
 
 func _process(delta):
+	# Handle all GUI-related keybinds
 	if Input.is_action_just_pressed("escape"):
 		if paused:
 			resume()
@@ -18,6 +22,7 @@ func _process(delta):
 			closeInventory()
 		else:
 			pause()
+	
 	if Input.is_action_just_pressed("inventory"):
 		if not paused:
 			if inInventory:
@@ -25,7 +30,8 @@ func _process(delta):
 			else:
 				openInventory()
 
-func updateMouse():
+# Shows or hides cursor
+func updateCursor():
 	# Reduce all possible GUIs to one state
 	if inInventory: # or ...
 		inUI = true
@@ -37,22 +43,28 @@ func updateMouse():
 	if not paused and not inUI:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+
+# GUI related functions
+
 func pause():
 	gui_pause.pause()
 	paused = true
-	updateMouse()
+	updateCursor()
 	
 func resume():
 	gui_pause.resume()
 	paused = false
-	updateMouse()
+	updateCursor()
 
 func openInventory():
 	gui_inventory.open()
 	inInventory = true
-	updateMouse()
+	updateCursor()
 
 func closeInventory():
 	gui_inventory.close()
 	inInventory = false
-	updateMouse()
+	updateCursor()
+	
+func quitToTitle():
+	Global.try_quit_to_title()

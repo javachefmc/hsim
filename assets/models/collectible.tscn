@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dsw75u1giin2x"]
+[gd_scene load_steps=7 format=3 uid="uid://dsw75u1giin2x"]
 
 [ext_resource type="Script" path="res://scripts/collectible.gd" id="1_3w0td"]
-[ext_resource type="Texture2D" uid="uid://dtgo602nyfswh" path="res://images/texture/floor1.png" id="2_xo848"]
+[ext_resource type="FontFile" uid="uid://du68wj6r6jpyj" path="res://assets/fonts/libel-suit-rg.otf" id="2_rau1r"]
+[ext_resource type="Texture2D" uid="uid://fpnfiec3kt5f" path="res://images/texture/floor1.png" id="2_xo848"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_biagu"]
 radius = 0.75
@@ -34,9 +35,11 @@ pixel_size = 0.0015
 billboard = 1
 double_sided = false
 no_depth_test = true
+texture_filter = 5
 text = "[E] Pick up"
-font_size = 45
-outline_size = 0
+font = ExtResource("2_rau1r")
+font_size = 65
+outline_size = 20
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

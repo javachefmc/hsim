@@ -8,19 +8,13 @@ func _ready():
 	close()
 
 func _process(delta):
-	#if Input.is_action_just_pressed("inventory"):
-		#if is_open:
-			#close()
-		#else:
-			#open()
+	# Keybind could be handled here but we are using gui_controller
 	pass
 
 func open():
 	visible = true
 	is_open = true
-	#Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
 func close():
 	visible = false
 	is_open = false
-	#Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

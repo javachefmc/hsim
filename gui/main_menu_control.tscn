@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bssqn6osvqek2"]
+[gd_scene load_steps=6 format=3 uid="uid://bssqn6osvqek2"]
 
 [ext_resource type="FontFile" uid="uid://brk4uxm3tjto7" path="res://assets/fonts/PolisRegular.otf" id="1_himju"]
+[ext_resource type="Script" path="res://scripts/gui_main_menu.gd" id="1_jacty"]
 [ext_resource type="Theme" uid="uid://doghuh3mastvc" path="res://gui/theme_mainmenubutton.tres" id="2_hk1y0"]
 
 [sub_resource type="Theme" id="Theme_q5i1f"]
@@ -19,6 +20,7 @@ offset_right = 1920.0
 offset_bottom = -1078.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jacty")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -60,3 +62,6 @@ layout_mode = 2
 theme = ExtResource("2_hk1y0")
 text = "exit"
 alignment = 0
+
+[connection signal="pressed" from="VBoxContainer/btn_play" to="." method="_on_btn_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/btn_exit" to="." method="_on_btn_exit_pressed"]

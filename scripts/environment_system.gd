@@ -35,3 +35,5 @@ func _process(delta):
 	
 	# Disable lights when they are off
 	# moon.visible = moon.light_energy > 0
+	
+	# TODO: add ambient light system

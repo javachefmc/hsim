@@ -3,7 +3,7 @@ extends Node3D
 class_name EnvironmentSystem
 
 var time : float
-@export var day_length : float = 20
+@export var day_length : float = 200
 @export var start_time : float = 0.5
 var time_rate : float
 
@@ -12,8 +12,8 @@ var time_rate : float
 @export var sun_intensity : Curve
 @export var moon_intensity : Curve
 
-@export var sun_max_energy : float = 50
-@export var moon_max_energy : float = 50
+@export var sun_max_energy : float = 20
+@export var moon_max_energy : float = 10
 
 @onready var sun : DirectionalLight3D = $SunLight
 @onready var moon : DirectionalLight3D = $SunLight/MoonLight

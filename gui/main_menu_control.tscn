@@ -41,24 +41,28 @@ offset_bottom = 939.0
 
 [node name="btn_play" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_hk1y0")
 text = "continue"
 alignment = 0
 
 [node name="btn_saves" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_hk1y0")
 text = "saves"
 alignment = 0
 
 [node name="btn_options" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_hk1y0")
 text = "options"
 alignment = 0
 
 [node name="btn_exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("2_hk1y0")
 text = "exit"
 alignment = 0

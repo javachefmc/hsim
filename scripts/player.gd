@@ -12,7 +12,7 @@ class_name Player
 
 ## ATTRIBUTES
 
-@export var inventory : Inv
+@export var inventory : Inventory
 
 const max_param : int = 100
 
@@ -76,7 +76,6 @@ func _ready():
 	# Prevents selecting self when doing functions with raycast
 	raycast.add_exception(hitbox)
 
-
 func _process(delta):
 	super(delta) # Run the process function for FPController
 
@@ -93,6 +92,9 @@ func pick_object():
 		print("picking object")
 		collider.get_parent().collect()
 		# Add collector here to determine what to do with collected item
+
+func collect(item):
+	inventory.insert(item)
 
 # Parameter changing systems
 

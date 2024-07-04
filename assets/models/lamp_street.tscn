@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://dqm2denddd6of" path="res://materials/metal_white.tres" id="1_yijgd"]
 [ext_resource type="Material" uid="uid://b3ah5mc54t0ny" path="res://materials/emissive_generic.tres" id="2_gp3qe"]
-[ext_resource type="Texture2D" uid="uid://6m1qnneop2u3" path="res://images/texture/light_falloff.png" id="3_racrt"]
+[ext_resource type="Texture2D" uid="uid://dmoxkucfpbn4u" path="res://images/texture/light_falloff.png" id="3_racrt"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0vptl"]
 height = 7.0
@@ -69,7 +69,7 @@ mesh = SubResource("CapsuleMesh_nk5uw")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 2.947, 6.77156, 0)
 light_intensity_lumens = 1.2e+06
 light_temperature = 4000.0
-light_energy = 100.0
+light_energy = 10.0
 light_volumetric_fog_energy = 10.0
 light_projector = ExtResource("3_racrt")
 light_size = 0.502

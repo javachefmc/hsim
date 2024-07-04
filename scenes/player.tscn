@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cj7y674njk2f"]
+[gd_scene load_steps=14 format=3 uid="uid://cj7y674njk2f"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_vgta6"]
 [ext_resource type="Resource" uid="uid://ckekupekprsdy" path="res://inventory/inv_player.tres" id="2_hbhov"]
 [ext_resource type="PackedScene" uid="uid://ckpl75ancx1nh" path="res://gui/gui_controller.tscn" id="3_1qdqc"]
 [ext_resource type="PackedScene" uid="uid://bg5snlonsknw5" path="res://gui/gui_HUD.tscn" id="3_1r74b"]
+[ext_resource type="PackedScene" uid="uid://b1b3qlu5m7he4" path="res://assets/models/model_002.tscn" id="3_onkv1"]
 [ext_resource type="PackedScene" uid="uid://bqi0nl1q1ofs7" path="res://gui/gui_pause.tscn" id="3_xy4hs"]
 [ext_resource type="PackedScene" uid="uid://8dt26jwv2f65" path="res://gui/gui_inventory.tscn" id="4_4nla7"]
 
@@ -116,6 +117,9 @@ shape = SubResource("CapsuleShape3D_6q654")
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="model_002" parent="Head" instance=ExtResource("3_onkv1")]
+transform = Transform3D(-1.2, 0, 1.04907e-07, 0, 1.2, 0, -1.04907e-07, 0, -1.2, 0, -1.5, -0.1)
 
 [node name="Raycast" type="RayCast3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

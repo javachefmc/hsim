@@ -58,16 +58,19 @@ grow_vertical = 2
 
 [node name="btn_resume" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("3_lqnkg")
 text = "resume"
 
 [node name="btn_options" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("3_lqnkg")
 text = "options"
 
 [node name="btn_exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme = ExtResource("3_lqnkg")
 text = "save and exit"
 

@@ -2,6 +2,9 @@ extends Node
 
 class_name Level
 
+# This script may be attached to any level root.
+# Handles creation of initial player, setting start position, and general level start tasks
+
 @export var playerScene : PackedScene
 @export var start_pos : Vector3
 

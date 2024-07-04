@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dd2ve2ebs7rd1"]
+[gd_scene load_steps=5 format=3 uid="uid://dd2ve2ebs7rd1"]
 
 [ext_resource type="Texture2D" uid="uid://pg0jvvxwykhv" path="res://icon.svg" id="1_l74gr"]
+[ext_resource type="Script" path="res://scripts/gui_inventory_slot.gd" id="1_yi618"]
+[ext_resource type="FontFile" uid="uid://du68wj6r6jpyj" path="res://assets/fonts/libel-suit-rg.otf" id="3_tpa0u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fk5v8"]
+font = ExtResource("3_tpa0u")
+font_size = 24
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [node name="gui_inventory_slot" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
@@ -12,8 +20,31 @@ offset_right = -1820.0
 offset_bottom = -980.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_yi618")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 108.0
+offset_bottom = 104.0
+
+[node name="item_display" type="Sprite2D" parent="."]
 scale = Vector2(0.789063, 0.789063)
 texture = ExtResource("1_l74gr")
 centered = false
+
+[node name="item_count" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -25.0
+offset_right = 3.0
+offset_bottom = 5.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "99"
+label_settings = SubResource("LabelSettings_fk5v8")
+horizontal_alignment = 2

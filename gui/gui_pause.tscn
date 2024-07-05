@@ -68,6 +68,12 @@ mouse_default_cursor_shape = 2
 theme = ExtResource("3_lqnkg")
 text = "options"
 
+[node name="btn_mp_host" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_lqnkg")
+text = "open to LAN"
+
 [node name="btn_exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
@@ -75,4 +81,5 @@ theme = ExtResource("3_lqnkg")
 text = "save and exit"
 
 [connection signal="pressed" from="VBoxContainer/btn_resume" to="." method="_on_btn_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/btn_mp_host" to="." method="_on_btn_mp_host_pressed"]
 [connection signal="pressed" from="VBoxContainer/btn_exit" to="." method="_on_btn_exit_pressed"]

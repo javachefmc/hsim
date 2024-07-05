@@ -4,10 +4,6 @@ extends FPController
 
 class_name Player
 
-@export var player_id : int = 1:
-	set(id):
-		player_id = id
-
 # vars grabbing things from Player scene
 
 @onready var camera : Camera3D = $Head/Camera3D
@@ -173,4 +169,3 @@ func hunger_tick():
 		# diminish saturation instead of hunger
 		saturation -= saturation_affect
 		if saturation < 0: saturation = 0
-	

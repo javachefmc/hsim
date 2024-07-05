@@ -184,7 +184,7 @@ skeleton = NodePath("../..")
 shape = SubResource("BoxShape3D_gaaud")
 
 [node name="Building7" type="MeshInstance3D" parent="Buildings"]
-transform = Transform3D(6.16642, 0, 0, 0, 7.13009, 0, 0, 0, 6.86344, 0.243152, 3.27468, 1.3064)
+transform = Transform3D(6.16642, 0, 0, 0, 7.13009, 0, 0, 0, 6.86344, 5.44, 3.27468, 1.3064)
 mesh = SubResource("BoxMesh_xdi56")
 skeleton = NodePath("../..")
 

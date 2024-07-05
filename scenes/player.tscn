@@ -1,12 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://cj7y674njk2f"]
+[gd_scene load_steps=16 format=3 uid="uid://cj7y674njk2f"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_vgta6"]
 [ext_resource type="Resource" uid="uid://ckekupekprsdy" path="res://inventory/inv_player.tres" id="2_hbhov"]
 [ext_resource type="PackedScene" uid="uid://ckpl75ancx1nh" path="res://gui/gui_controller.tscn" id="3_1qdqc"]
 [ext_resource type="PackedScene" uid="uid://bg5snlonsknw5" path="res://gui/gui_HUD.tscn" id="3_1r74b"]
+[ext_resource type="Script" path="res://scripts/mp_input.gd" id="3_l5xqb"]
 [ext_resource type="PackedScene" uid="uid://b1b3qlu5m7he4" path="res://assets/models/model_002.tscn" id="3_onkv1"]
 [ext_resource type="PackedScene" uid="uid://bqi0nl1q1ofs7" path="res://gui/gui_pause.tscn" id="3_xy4hs"]
 [ext_resource type="PackedScene" uid="uid://8dt26jwv2f65" path="res://gui/gui_inventory.tscn" id="4_4nla7"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7o8s6"]
+properties/0/path = NodePath("InputSynchronizer: input_direction")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6q654"]
 radius = 0.3
@@ -110,6 +116,11 @@ _data = {
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_vgta6")
 inventory = ExtResource("2_hbhov")
+
+[node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
+unique_name_in_owner = true
+replication_config = SubResource("SceneReplicationConfig_7o8s6")
+script = ExtResource("3_l5xqb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

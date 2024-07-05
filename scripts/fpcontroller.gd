@@ -27,7 +27,27 @@ const rotation_damp = 30
 @onready var head : Node3D
 @onready var animation_controller : AnimationPlayer
 
+@export var player_id : int = 1:
+	set(id):
+		player_id = id
+		%InputSynchronizer.set_multiplayer_authority(id)
+
 func _process(delta):
+	# apply this on server side only.
+	if multiplayer.is_server():
+		_apply_movement_from_input(delta)
+	
+func _unhandled_input(event):
+	# Calculate camera rotation
+	
+	# we need to separate this from client and server
+	if multiplayer.is_server():
+		if event is InputEventMouseMotion:
+			rotation_target.x -= event.relative.y * rotation_speed
+			rotation_target.x = clamp(rotation_target.x, -PI/2, PI/2)
+			rotation_target.y -= event.relative.x * rotation_speed
+
+func _apply_movement_from_input(delta):
 	var movement_speed = SPEED;
 	var running = false;
 	
@@ -44,7 +64,7 @@ func _process(delta):
 	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	var input_dir = Input.get_vector("left", "right", "forward", "backward")
+	var input_dir = %InputSynchronizer.input_direction
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	# Player is inputting movement controls
@@ -70,9 +90,3 @@ func _process(delta):
 	head.rotation.x = rotation_smooth.x
 	rotation.y = rotation_smooth.y
 	
-func _unhandled_input(event):
-	# Calculate camera rotation
-	if event is InputEventMouseMotion:
-		rotation_target.x -= event.relative.y * rotation_speed
-		rotation_target.x = clamp(rotation_target.x, -PI/2, PI/2)
-		rotation_target.y -= event.relative.x * rotation_speed

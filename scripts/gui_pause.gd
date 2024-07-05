@@ -1,3 +1,5 @@
+# In-game pause screen GUI
+
 extends Control
 
 class_name GUI_Pause
@@ -8,8 +10,7 @@ signal resume_pressed
 signal exit_pressed
 
 func _ready():
-	#resume()
-	pass
+	resume()
 
 func _process(delta):
 	# Keybind could be handled here but we are using gui_controller

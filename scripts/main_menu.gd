@@ -1,3 +1,6 @@
+# Final main menu (not main menu controller)
+# Main Menu > Panel 3D > Main Menu Controller
+
 extends Node3D
 
 var mouse_pos

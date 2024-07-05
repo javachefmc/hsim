@@ -1,3 +1,5 @@
+# Global game functions
+
 extends Node
 
 var current_scene = null

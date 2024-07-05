@@ -1,3 +1,5 @@
+# (not my code) Allows for placing 2D gui in 3D
+
 extends Node3D
 
 ## Used for checking if the mouse is inside the Area3D.

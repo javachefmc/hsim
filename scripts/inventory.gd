@@ -1,3 +1,7 @@
+# Handles the Inventory class, which is an array of Inventory Slots
+# Contains code for adding and removing items from the inventory
+# Will eventually have code for moving items around
+
 extends Resource
 
 class_name Inventory

@@ -1,6 +1,12 @@
+# Calculates attributes and functions for each player instance
+
 extends FPController
 
 class_name Player
+
+@export var player_id : int = 1:
+	set(id):
+		player_id = id
 
 # vars grabbing things from Player scene
 

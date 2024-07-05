@@ -1,3 +1,6 @@
+# Handles all in-game player-specific GUIs
+# Includes keybinds
+
 extends Control
 
 class_name GUI_Controller

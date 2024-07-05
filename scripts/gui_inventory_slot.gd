@@ -1,3 +1,5 @@
+# Slots for items in an inventory GUI
+
 extends Panel
 
 @onready var item_display : Sprite2D = $item_display

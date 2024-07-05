@@ -1,3 +1,5 @@
+# Main menu GUI controls
+
 extends Control
 
 signal play_btn_pressed

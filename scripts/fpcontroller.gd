@@ -1,3 +1,5 @@
+# Handles player physics
+
 extends CharacterBody3D
 
 class_name FPController

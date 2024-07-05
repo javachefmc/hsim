@@ -1,3 +1,5 @@
+# Day/night cycle, light intensity, sky color
+
 extends Node3D
 
 class_name EnvironmentSystem

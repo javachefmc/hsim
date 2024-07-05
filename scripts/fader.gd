@@ -1,3 +1,5 @@
+# Simple script for fading whole screen to/from black
+
 extends Control
 
 class_name Fader

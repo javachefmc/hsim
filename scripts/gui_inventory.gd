@@ -1,3 +1,5 @@
+# Handles inventory GUI
+
 extends Control
 
 class_name GUI_Inventory

@@ -1,3 +1,5 @@
+# Extends to any world item that can be picked up
+
 extends Node3D
 
 @onready var label = $Label

@@ -4,10 +4,10 @@ extends Node3D
 
 class_name EnvironmentSystem
 
-var time : float
+@export var time : float
 @export var day_length : float = 200
 @export var start_time : float = 0.5
-var time_rate : float
+var time_rate : float = 1 / day_length
 
 @export var sun_color : Gradient
 
@@ -21,13 +21,16 @@ var time_rate : float
 @onready var moon : DirectionalLight3D = $SunLight/MoonLight
 
 func _ready():
-	time_rate = 1 / day_length
 	time = start_time
 
 func _process(delta):
-	time += time_rate * delta
-	if time > 1:
-		time = 0
+	if not multiplayer.is_server():
+		time += time_rate * delta
+		if time > 1:
+			time = 0
+	else:
+		time = $MultiplayerSynchronizer.time
+		pass
 		
 	sun.rotation_degrees.x = time * 360 + 90
 	sun.light_color = sun_color.sample(time)

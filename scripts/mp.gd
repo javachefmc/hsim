@@ -47,6 +47,9 @@ func _connect_player(id : int):
 	new_player.name = str(id)
 	
 	_players_spawn_node.add_child(new_player, true)
+	
+	# RPC calls to (hopefully) the newly connected player
+	
 
 # Called when player disconnects from server
 func _disconnect_player(id : int):
@@ -57,6 +60,6 @@ func _disconnect_player(id : int):
 	
 func _remove_sp_player():
 	print("Removing singleplayer player...")
-	var sp_player = Global.get_current_scene().get_node("Player")
+	var sp_player = Global.get_current_scene().get_node("Players/Player")
 	sp_player.queue_free()
 	

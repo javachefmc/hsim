@@ -16,7 +16,7 @@ var player : Player
 func _ready():
 	# instantiate and create a player
 	player = playerScene.instantiate()
-	add_child(player)
+	$Players.add_child(player)
 	
 	# set player position to start pos
 	player.position = start_pos

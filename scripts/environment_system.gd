@@ -24,13 +24,7 @@ func _ready():
 	time = start_time
 
 func _process(delta):
-	if not multiplayer.is_server():
-		time += time_rate * delta
-		if time > 1:
-			time = 0
-	else:
-		time = $MultiplayerSynchronizer.time
-		pass
+	time = $MultiplayerSynchronizer.time
 		
 	sun.rotation_degrees.x = time * 360 + 90
 	sun.light_color = sun_color.sample(time)

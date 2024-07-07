@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://7v8hapbbkrvn"]
+
+[ext_resource type="FontFile" uid="uid://du68wj6r6jpyj" path="res://assets/fonts/libel-suit-rg.otf" id="1_2vypm"]
+[ext_resource type="Script" path="res://scripts/gui_save_slot.gd" id="1_bmene"]
+
+[node name="gui_save_slot" type="Button"]
+custom_minimum_size = Vector2(0, 60)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -660.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_bmene")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="lbl_world_name" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2vypm")
+theme_override_font_sizes/font_size = 20
+text = "Save 1"
+
+[node name="lbl_day_count" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2vypm")
+theme_override_font_sizes/font_size = 18
+text = "Day 0"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="lbl_date_created" type="Label" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2vypm")
+theme_override_font_sizes/font_size = 16
+text = "created XX/XX/XXXX"
+
+[node name="lbl_date_updated" type="Label" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_2vypm")
+theme_override_font_sizes/font_size = 16
+text = "last played XX/XX/XXXX"

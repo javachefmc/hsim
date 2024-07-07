@@ -1,0 +1,6 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://d1gv84fqrc18k"]
+
+[ext_resource type="FontFile" uid="uid://du68wj6r6jpyj" path="res://assets/fonts/libel-suit-rg.otf" id="1_c66c5"]
+
+[resource]
+font = ExtResource("1_c66c5")

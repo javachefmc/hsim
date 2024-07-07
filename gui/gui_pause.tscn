@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://scripts/gui_pause.gd" id="1_51ixd"]
 [ext_resource type="FontFile" uid="uid://brk4uxm3tjto7" path="res://assets/fonts/PolisRegular.otf" id="2_menjw"]
-[ext_resource type="Theme" uid="uid://doghuh3mastvc" path="res://gui/theme_mainmenubutton.tres" id="3_lqnkg"]
+[ext_resource type="Theme" uid="uid://curha3bofa1iq" path="res://gui/theme_secondarymenubutton.tres" id="3_cuxnd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5udc8"]
 font = ExtResource("2_menjw")
-font_size = 128
+font_size = 90
 
 [node name="gui_pause" type="Control"]
 layout_mode = 3
@@ -26,22 +26,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.678431)
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -132.5
-offset_top = -212.0
-offset_right = 132.5
-offset_bottom = -100.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "paused"
-label_settings = SubResource("LabelSettings_5udc8")
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -49,37 +33,50 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -179.0
-offset_top = -83.0
-offset_right = 179.0
-offset_bottom = 218.0
+offset_left = -144.0
+offset_top = -184.5
+offset_right = 144.0
+offset_bottom = 184.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "paused"
+label_settings = SubResource("LabelSettings_5udc8")
+horizontal_alignment = 1
 
 [node name="btn_resume" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme = ExtResource("3_lqnkg")
+theme = ExtResource("3_cuxnd")
 text = "resume"
 
 [node name="btn_options" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme = ExtResource("3_lqnkg")
+theme = ExtResource("3_cuxnd")
 text = "options"
 
 [node name="btn_mp_host" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme = ExtResource("3_lqnkg")
+theme = ExtResource("3_cuxnd")
 text = "open to LAN"
+
+[node name="btn_save" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("3_cuxnd")
+text = "save"
 
 [node name="btn_exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 mouse_default_cursor_shape = 2
-theme = ExtResource("3_lqnkg")
-text = "save and exit"
+theme = ExtResource("3_cuxnd")
+text = "exit"
 
 [connection signal="pressed" from="VBoxContainer/btn_resume" to="." method="_on_btn_resume_pressed"]
 [connection signal="pressed" from="VBoxContainer/btn_mp_host" to="." method="_on_btn_mp_host_pressed"]
+[connection signal="pressed" from="VBoxContainer/btn_save" to="." method="_on_btn_save_pressed"]
 [connection signal="pressed" from="VBoxContainer/btn_exit" to="." method="_on_btn_exit_pressed"]

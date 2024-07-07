@@ -28,6 +28,9 @@ func _on_btn_mp_host_pressed():
 	MP.host()
 	$VBoxContainer/btn_mp_host.visible = false
 
+func _on_btn_save_pressed():
+	Global.save_current_world()
+
 func pause():
 	visible = true
 	paused = true

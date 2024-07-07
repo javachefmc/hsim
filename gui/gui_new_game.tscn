@@ -1,0 +1,128 @@
+[gd_scene load_steps=7 format=3 uid="uid://y1fgu2iw5xij"]
+
+[ext_resource type="FontFile" uid="uid://brk4uxm3tjto7" path="res://assets/fonts/PolisRegular.otf" id="1_ej8ho"]
+[ext_resource type="Script" path="res://scripts/gui_new_game.gd" id="1_g1vll"]
+[ext_resource type="LabelSettings" uid="uid://d1gv84fqrc18k" path="res://gui/theme_guilabel_text.tres" id="2_wexcl"]
+[ext_resource type="Theme" uid="uid://b8ipvdlcj20s2" path="res://gui/theme_gui_lineedit.tres" id="3_42hv2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_of3qh"]
+font = ExtResource("1_ej8ho")
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_3gvf1"]
+font = ExtResource("1_ej8ho")
+font_size = 28
+
+[node name="gui_new_game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g1vll")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 66.0
+offset_top = 75.0
+offset_right = 245.0
+offset_bottom = 132.0
+text = "new game"
+label_settings = SubResource("LabelSettings_of3qh")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 829.0
+offset_top = 61.0
+offset_right = 1235.0
+offset_bottom = 626.0
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="lbl_world" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "World"
+label_settings = SubResource("LabelSettings_3gvf1")
+
+[node name="- placeholder -" type="Control" parent="GridContainer"]
+layout_mode = 2
+
+[node name="lbl_worldname" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "world name:"
+label_settings = ExtResource("2_wexcl")
+
+[node name="txt_worldname" type="LineEdit" parent="GridContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme = ExtResource("3_42hv2")
+placeholder_text = "Save 1"
+clear_button_enabled = true
+
+[node name="lbl_difficulty" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "difficulty:"
+label_settings = ExtResource("2_wexcl")
+
+[node name="opt_difficulty" type="OptionButton" parent="GridContainer"]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "Normal"
+popup/item_0/id = 0
+popup/item_1/text = "Hard"
+popup/item_1/id = 1
+popup/item_2/text = "Casual"
+popup/item_2/id = 2
+
+[node name="lbl_character" type="Label" parent="GridContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "player"
+label_settings = SubResource("LabelSettings_3gvf1")
+vertical_alignment = 2
+
+[node name="- placeholder -2" type="Control" parent="GridContainer"]
+layout_mode = 2
+
+[node name="lbl_playername" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "character name:"
+label_settings = ExtResource("2_wexcl")
+
+[node name="txt_playername" type="LineEdit" parent="GridContainer"]
+layout_mode = 2
+theme = ExtResource("3_42hv2")
+placeholder_text = "Player"
+clear_button_enabled = true
+
+[node name="btn_create" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1058.0
+offset_top = 637.0
+offset_right = 1204.0
+offset_bottom = 672.0
+theme = ExtResource("3_42hv2")
+text = "create"
+
+[node name="btn_returntomenu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 637.0
+offset_right = 216.0
+offset_bottom = 672.0
+theme = ExtResource("3_42hv2")
+text = "back"
+
+[connection signal="pressed" from="btn_create" to="." method="_on_btn_create_pressed"]
+[connection signal="pressed" from="btn_returntomenu" to="." method="_on_btn_returntomenu_pressed"]

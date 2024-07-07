@@ -1,16 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dekk263ylysyx"]
+[gd_scene load_steps=7 format=3 uid="uid://dekk263ylysyx"]
 
 [ext_resource type="FontFile" uid="uid://brk4uxm3tjto7" path="res://assets/fonts/PolisRegular.otf" id="1_bixy4"]
 [ext_resource type="Script" path="res://scripts/gui_saves.gd" id="1_c1jgo"]
 [ext_resource type="FontFile" uid="uid://du68wj6r6jpyj" path="res://assets/fonts/libel-suit-rg.otf" id="2_p65p0"]
+[ext_resource type="Theme" uid="uid://u6n8twqhjh4f" path="res://gui/theme_tertiarymenubutton.tres" id="4_lt4tw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_31qkv"]
 font = ExtResource("1_bixy4")
 font_size = 64
 
-[sub_resource type="Theme" id="Theme_4un3b"]
-default_font = ExtResource("2_p65p0")
-default_font_size = 20
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dlmtb"]
+bg_color = Color(0.338871, 0.434766, 0.209645, 1)
 
 [node name="gui_saves" type="Control"]
 layout_mode = 3
@@ -66,19 +66,73 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 913.0
+offset_top = 34.0
+offset_right = -14.0
+offset_bottom = -196.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer2"]
 layout_mode = 2
-theme_override_constants/separation = 30
+size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="ScrollContainer2/VBoxContainer"]
+[node name="txt_save_name" type="LineEdit" parent="ScrollContainer2/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.266575, 0.266575, 0.266575, 1)
-theme_override_fonts/font = ExtResource("1_bixy4")
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_p65p0")
 theme_override_font_sizes/font_size = 32
-text = "more data"
+text = "Save00"
+max_length = 30
+select_all_on_focus = true
+caret_blink = true
+
+[node name="lbl_day" type="Label" parent="ScrollContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_p65p0")
+theme_override_font_sizes/font_size = 20
+text = "Day 0"
+
+[node name="lbl_save_path" type="Label" parent="ScrollContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.544974, 0.544974, 0.544974, 1)
+theme_override_fonts/font = ExtResource("2_p65p0")
+theme_override_font_sizes/font_size = 18
+text = "Save00"
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer2/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="lbl_last_played" type="Label" parent="ScrollContainer2/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_p65p0")
+theme_override_font_sizes/font_size = 16
+text = "last played"
+
+[node name="lbl_date_last_played" type="Label" parent="ScrollContainer2/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_p65p0")
+theme_override_font_sizes/font_size = 16
+text = "XX/XX/XXXX XX:XX"
+horizontal_alignment = 2
+
+[node name="lbl_created" type="Label" parent="ScrollContainer2/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_p65p0")
+theme_override_font_sizes/font_size = 16
+text = "created"
+
+[node name="lbl_date_created" type="Label" parent="ScrollContainer2/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_p65p0")
+theme_override_font_sizes/font_size = 16
+text = "XX/XX/XXXX XX:XX"
+horizontal_alignment = 2
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -102,12 +156,51 @@ grow_vertical = 2
 
 [node name="btn_new" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme = SubResource("Theme_4un3b")
+theme = ExtResource("4_lt4tw")
 text = "new game"
 
-[node name="btn_delete" type="Button" parent="VBoxContainer"]
+[node name="btn_exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("4_lt4tw")
+text = "back"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 931.0
+offset_top = 190.0
+offset_right = 1248.0
+offset_bottom = 327.0
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer2"]
+layout_mode = 2
+columns = 2
+
+[node name="btn_edit" type="Button" parent="VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_lt4tw")
+disabled = true
+text = "save"
+
+[node name="btn_delete" type="Button" parent="VBoxContainer2/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_lt4tw")
 disabled = true
 text = "delete"
 
+[node name="btn_load" type="Button" parent="VBoxContainer2"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme = ExtResource("4_lt4tw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_dlmtb")
+disabled = true
+text = "play"
+
 [connection signal="pressed" from="VBoxContainer/btn_new" to="." method="_on_btn_new_pressed"]
+[connection signal="pressed" from="VBoxContainer/btn_exit" to="." method="_on_btn_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer2/btn_load" to="." method="_on_btn_load_pressed"]

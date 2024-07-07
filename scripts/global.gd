@@ -4,21 +4,19 @@ extends Node
 
 var current_scene = null
 
-var user_dir = "user://"
-var res_dir = "res://"
-var save_dir_name = "saves"
-var save_dir = "res://data/" + save_dir_name
+const user_dir = "user://"
+const res_dir = "res://"
+const save_dir_name = "saves"
+const save_dir = "res://data/" + save_dir_name
+const save_ext = ".tres" # THIS HAS TO BE .TRES
+
+var current_save : String = "Save00.tres"
 
 # If/when multiplayer is developed, these variables will be important
 var canChangeScenes = true
 var canQuit = true
 
 signal game_start
-
-#@onready var main_menu : PackedScene = preload("res://gui/main_menu.tscn")
-#@onready var level_main : PackedScene = preload("res://scenes/level_00.tscn")
-
-var current_save : String = "Save00"
 
 func _ready():
 	var dir = DirAccess.open(user_dir)
@@ -63,11 +61,10 @@ func get_current_scene():
 	var root = get_tree().root
 	return root.get_child(root.get_child_count() - 1)
 
-func load_save(name):
-	#var save_data = 
-	
-	
-	pass
+func load_save(filename):
+	current_save = filename
+	start_game()
+	#TODO: LOAD ALL DATA HERE
 
 func create_save(data):
 	# Make new save with overwrite protection
@@ -78,18 +75,26 @@ func update_save(data):
 	pass
 
 func save_current_world():
+	print("Saving world...")
 	var player : Player = get_current_scene().get_node("Players").get_child(0)
+	
+	var current_save_dir = save_dir + "/" + current_save
 	
 	var save_data = SaveGame.new()
 	save_data.player_position = player.position
 	save_data.player_rotation = player.rotation_target
+	save_data.date_updated = get_datetime()
 	
-	#var file = FileAccess.open(save_dir, FileAccess.WRITE)
-	# file.store_var(var)
 	verify_save_directory()
 	
-	print(save_data.player_position)
-	print(save_data.player_rotation)
+	if not FileAccess.file_exists(current_save_dir):
+		# Game save does not exist yet for some reason
+		save_data.date_created = get_datetime()
+		print("Save does not exist, creating new one at " + current_save_dir)
+	else:
+		print("Saving over " + current_save_dir)
+	
+	ResourceSaver.save(save_data, current_save_dir)
 	
 
 func load_data():
@@ -101,6 +106,9 @@ func load_data():
 		# var = 0
 		
 func verify_save_directory():
-	var dir = DirAccess.open("res://")
+	var dir = DirAccess.open("res://data")
 	if !dir.dir_exists(save_dir_name):
 		dir.make_dir(save_dir_name)
+		
+func get_datetime():
+	return Time.get_datetime_string_from_system(false, true)

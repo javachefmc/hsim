@@ -17,7 +17,7 @@ const FRICTION = 0.3
 const AIR_RESISTANCE = 0.05
 
 # rotation
-var rotation_target : Vector3
+@export var rotation_target : Vector3
 var rotation_smooth : Vector3
 const rotation_speed = 0.004
 const rotation_damp = 30
@@ -36,6 +36,12 @@ func _process(delta):
 	# apply this on server side only.
 	if multiplayer.is_server():
 		_apply_movement_from_input(delta)
+	
+	# HACK. GET RID OF THIS
+	if(position.y <= -100):
+		position = Vector3(0,5,0)
+		velocity = Vector3(0,0,0)
+		rotation_target = Vector3(0,0,0)
 	
 func _unhandled_input(event):
 	# Calculate camera rotation
@@ -83,6 +89,9 @@ func _apply_movement_from_input(delta):
 			velocity.z = lerp(velocity.z, 0.0, AIR_RESISTANCE)
 			
 	move_and_slide()
+	
+	if !multiplayer.is_server():
+		rotation_target = %PlayerSynchronizer.rotation_target
 	
 	# Calculate look direction smoothly
 	rotation_smooth = rotation_smooth.lerp(rotation_target, delta * rotation_damp)

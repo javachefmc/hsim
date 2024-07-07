@@ -7,6 +7,8 @@ var save_dir = Global.save_dir
 
 @export var save_slot_scene : PackedScene = preload("res://gui/gui_save_slot.tscn")
 
+var selected_save : String
+
 func _ready():
 	update_save_list()
 
@@ -22,36 +24,56 @@ func update_save_list():
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
-			if dir.current_is_dir():
-				print("Found directory: " + file_name)
-				
-				# TODO: do extra checks to make sure this is a save. Saves should also be sorted by last played
-				
-				saves.append(file_name)
-				
-				# move this somewhere else so it doesn't get called more than once!
-				$ScrollContainer/Saves/lbl_no_saves.visible = false
-				
-				var save_slot = save_slot_scene.instantiate()
-				save_slot.world_name = file_name
-				save_slot.update()
-				
-				$ScrollContainer/Saves.add_child(save_slot)
-				
+			# Check that this is a file
+			if not dir.current_is_dir():
+				# Check that the file ends in .tres
+				if file_name.ends_with(Global.save_ext):
+					# Try to load this file as a SaveGame
+					var this_save = ResourceLoader.load(Global.save_dir + "/" + file_name) as SaveGame
+					# Check that it actually loaded
+					if not this_save == null:
+						saves.append(file_name)
+						
+						var save_slot = save_slot_scene.instantiate()
+						
+						save_slot.world_name = this_save.save_name
+						save_slot.date_created = this_save.date_created
+						save_slot.date_updated = this_save.date_updated
+						save_slot.day = this_save.day
+						save_slot.file_name = file_name
+						
+						save_slot.update()
+					
+						$ScrollContainer/Saves.add_child(save_slot)
+						
+						save_slot.connect("slot_selected", slot_pressed)
+					
 			file_name = dir.get_next()
+			
+		if saves.size() > 0:
+			$ScrollContainer/Saves/lbl_no_saves.visible = false
 
 
 func _on_btn_new_pressed():
-	var dir = DirAccess.open(save_dir)
-	if dir:
-		var name = "World " + str(randi() % 100)
-		dir.make_dir(name)
-		update_save_list()
-	else:
-		pass
-	# Temporary code for adding another scene 
-	
-	
+	pass
 	#Global.load_scene("res://gui/gui_new_game.tscn")
-	
 
+func _on_btn_exit_pressed():
+	Global.load_scene("res://gui/main_menu.tscn")
+	
+func slot_pressed(file_name):
+	selected_save = file_name
+	
+	var save = ResourceLoader.load(Global.save_dir + "/" + file_name) as SaveGame
+	$ScrollContainer2/VBoxContainer/txt_save_name.text = save.save_name
+	$ScrollContainer2/VBoxContainer/lbl_day.text = "Day " + str(save.day)
+	$ScrollContainer2/VBoxContainer/lbl_save_path.text = file_name
+	$ScrollContainer2/VBoxContainer/GridContainer/lbl_date_last_played.text = save.date_updated
+	$ScrollContainer2/VBoxContainer/GridContainer/lbl_date_created.text = save.date_created
+	
+	$VBoxContainer2/GridContainer/btn_delete.disabled = false
+	$VBoxContainer2/btn_load.disabled = false
+
+func _on_btn_load_pressed():
+	if not selected_save == null:
+		Global.load_save(selected_save)

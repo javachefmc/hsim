@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SaveGame" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/save_game_resource.gd" id="1_hqijs"]
+
+[resource]
+script = ExtResource("1_hqijs")
+save_name = ""
+date_created = ""
+date_updated = "2024-07-07 03:39:46"
+player_position = Vector3(2.09947, 0.125737, -12.055)
+player_rotation = Vector3(0.0067964, -2.936, 0)
+player_velocity = Vector3(0, 0, 0)
+time = 0.0
+day = 0

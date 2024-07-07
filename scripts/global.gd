@@ -95,6 +95,8 @@ func load_save(file_name):
 		player.rotation_target = save.player_rotation
 		player.velocity = save.player_velocity
 		
+		#player.inventory = PlayerInventory.new()
+		
 		# We will need to set other player parameters such as health, inventory, etc.
 		
 	else:
@@ -146,15 +148,6 @@ func save_current_world():
 	print("Saving at " + current_save_dir)
 	
 	ResourceSaver.save(save_data, current_save_dir)
-	
-
-func load_data():
-	if FileAccess.file_exists(save_dir):
-		var file = FileAccess.open(save_dir, FileAccess.READ)
-		# var = file.get_var(var)
-	else:
-		print("File loader: no data saved")
-		# var = 0
 		
 func verify_save_directory():
 	var dir = DirAccess.open("res://data")

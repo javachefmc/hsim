@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwgj5enjow506"]
+
+[ext_resource type="Texture2D" uid="uid://ddety8nm1hv84" path="res://images/titlescreen2.jpg" id="1_ii3ug"]
+[ext_resource type="PackedScene" uid="uid://bssqn6osvqek2" path="res://gui/main_menu_control.tscn" id="2_jjgtc"]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="bkgd" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(631, 369)
+texture = ExtResource("1_ii3ug")
+
+[node name="MainMenuControl" parent="." instance=ExtResource("2_jjgtc")]
+offset_right = 0.0
+offset_bottom = 0.0
+scale = Vector2(0.6, 0.6)

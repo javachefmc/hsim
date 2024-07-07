@@ -21,11 +21,11 @@ func _process(delta):
 	pass
 
 func update():
-	$HBoxContainer/VBoxContainer2/lbl_world_name.text = world_name
-	$HBoxContainer/VBoxContainer2/lbl_day_count.text = "day " + str(day)
+	%lbl_world_name.text = world_name
+	%lbl_day_count.text = "day " + str(day)
 	#$HBoxContainer/VBoxContainer3/lbl_date_created.text = "created " + date_created
-	$HBoxContainer/VBoxContainer3/lbl_date_updated.text = date_updated
-	$HBoxContainer/VBoxContainer3/lbl_file_name.text = file_name
+	%lbl_date_updated.text = date_updated
+	%lbl_file_name.text = file_name
 
 func _on_pressed():
 	slot_selected.emit(file_name)

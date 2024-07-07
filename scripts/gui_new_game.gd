@@ -2,7 +2,6 @@
 
 extends Control
 
-
 func _on_btn_create_pressed():
 	pass # Replace with function body.
 	Global.load_scene("res://scenes/level_00.tscn")

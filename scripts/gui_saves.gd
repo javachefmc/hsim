@@ -10,12 +10,13 @@ var save_dir = Global.save_dir
 var selected_save : String
 
 func _ready():
+	clear_rightpanel()
 	update_save_list()
 
 func update_save_list():
-	for n in $ScrollContainer/Saves.get_children():
+	for n in $saves_panel/Saves.get_children():
 		if not n is Label:
-			$ScrollContainer/Saves.remove_child(n)
+			$saves_panel/Saves.remove_child(n)
 			n.queue_free()
 	
 	var dir = DirAccess.open(save_dir)
@@ -44,14 +45,14 @@ func update_save_list():
 						
 						save_slot.update()
 					
-						$ScrollContainer/Saves.add_child(save_slot)
+						$saves_panel/Saves.add_child(save_slot)
 						
 						save_slot.connect("slot_selected", slot_pressed)
 					
 			file_name = dir.get_next()
 			
 		if saves.size() > 0:
-			$ScrollContainer/Saves/lbl_no_saves.visible = false
+			$saves_panel/Saves/lbl_no_saves.visible = false
 
 
 func _on_btn_new_pressed():
@@ -64,12 +65,14 @@ func _on_btn_exit_pressed():
 func slot_pressed(file_name):
 	selected_save = file_name
 	
+	$right_panel.visible = true
+	
 	var save = ResourceLoader.load(Global.save_dir + "/" + file_name) as SaveGame
-	$ScrollContainer2/VBoxContainer/txt_save_name.text = save.save_name
-	$ScrollContainer2/VBoxContainer/lbl_day.text = "Day " + str(save.day)
-	$ScrollContainer2/VBoxContainer/lbl_save_path.text = file_name
-	$ScrollContainer2/VBoxContainer/GridContainer/lbl_date_last_played.text = save.date_updated
-	$ScrollContainer2/VBoxContainer/GridContainer/lbl_date_created.text = save.date_created
+	$right_panel/VBoxContainer/txt_save_name.text = save.save_name
+	$right_panel/VBoxContainer/lbl_day.text = "Day " + str(save.day)
+	$right_panel/VBoxContainer/lbl_save_path.text = file_name
+	$right_panel/VBoxContainer/GridContainer/lbl_date_last_played.text = save.date_updated
+	$right_panel/VBoxContainer/GridContainer/lbl_date_created.text = save.date_created
 	
 	$VBoxContainer2/GridContainer/btn_delete.disabled = false
 	$VBoxContainer2/btn_load.disabled = false
@@ -77,3 +80,10 @@ func slot_pressed(file_name):
 func _on_btn_load_pressed():
 	if not selected_save == null:
 		Global.load_save(selected_save)
+
+
+func clear_rightpanel():
+	$right_panel.visible = false
+	
+func _on_btn_open_saves_pressed():
+	OS.shell_show_in_file_manager(ProjectSettings.globalize_path(Global.save_dir))

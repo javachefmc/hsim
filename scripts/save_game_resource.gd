@@ -9,13 +9,20 @@ class_name SaveGame
 @export var date_created : String
 @export var date_updated : String
 
+## WORLD
+@export var time : float
+@export var day : int
+
 ## PLAYER
 @export var player_position : Vector3
 @export var player_rotation : Vector3
 @export var player_velocity : Vector3
 
+# Health
+# Food
+# Water
+# Stamina
+# Inventory
+
 # In the future, player data should be moved to its own resource (with unique player id's) and instantiated in the game save resource as an array of player datas
 
-## WORLD
-@export var time : float
-@export var day : int

@@ -4,11 +4,11 @@
 
 [resource]
 script = ExtResource("1_hqijs")
-save_name = "Save00"
-date_created = "2024-07-07 03:39:46"
-date_updated = "2024-07-07 03:39:46"
-player_position = Vector3(2.09947, 0.125737, -12.055)
-player_rotation = Vector3(0.0067964, -2.936, 0)
-player_velocity = Vector3(0, 0, 0)
-time = 0.0
+save_name = ""
+date_created = ""
+date_updated = "2024-07-07 15:10:03"
+time = 0.0147667
 day = 0
+player_position = Vector3(-3.13613, 0.125838, -26.4596)
+player_rotation = Vector3(1.5708, -5.32, 0)
+player_velocity = Vector3(0, 0, 0)

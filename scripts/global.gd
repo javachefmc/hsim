@@ -61,38 +61,89 @@ func get_current_scene():
 	var root = get_tree().root
 	return root.get_child(root.get_child_count() - 1)
 
-func load_save(filename):
-	current_save = filename
-	start_game()
-	#TODO: LOAD ALL DATA HERE
-
-func create_save(data):
-	# Make new save with overwrite protection
-	pass
+func load_save(file_name):
+	current_save = file_name
 	
-func update_save(data):
-	# Overwrite existing save or create new save if it somehow doesn't exist
-	pass
-
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	game_start.emit()
+	
+	#TODO: LOAD ALL DATA HERE
+	
+	# attempt to directly load save
+	var save = ResourceLoader.load(Global.save_dir + "/" + current_save) as SaveGame
+	# Check that it actually loaded
+	if not save == null:
+		
+		var world = load("res://scenes/level_00.tscn").instantiate()
+		
+		var scene : Node = get_current_scene()
+		
+		get_tree().root.remove_child(scene)
+		scene.queue_free()
+		
+		get_tree().root.add_child(world)
+		
+		# Setters
+		
+		var env = world.get_node("EnvironmentSystem")
+		var player = world.get_node("Players/Player")
+		
+		env.time = save.time
+		env.day = save.day
+		
+		player.position = save.player_position
+		player.rotation_target = save.player_rotation
+		player.velocity = save.player_velocity
+		
+		# We will need to set other player parameters such as health, inventory, etc.
+		
+	else:
+		print("FAILED TO LOAD SAVE")
+	
 func save_current_world():
 	print("Saving world...")
+	
 	var player : Player = get_current_scene().get_node("Players").get_child(0)
+	var env : EnvironmentSystem = get_current_scene().get_node("EnvironmentSystem")
 	
 	var current_save_dir = save_dir + "/" + current_save
 	
 	var save_data = SaveGame.new()
+	
+	# Load previous save
+	var old_save_data = ResourceLoader.load(current_save_dir) as SaveGame
+	# Check that it actually loaded.
+	# With the current setup, it is necessary that this loads in order to not lose parameters like the save name
+	if not old_save_data == null:
+		## SAVE PARAMETERS
+		save_data.save_name = old_save_data.save_name
+		save_data.date_created = old_save_data.date_created
+	else:
+		## SAVE PARAMETERS
+		print("WARNING: Could not load previous save. Save name and date created will be lost.")
+		save_data.save_name = "Unknown"
+		save_data.date_created = get_datetime()
+		
+	
+	## SAVE PARAMETERS
+	
+	save_data.date_updated = get_datetime()
+	
+	## ENVIRONMENT PARAMETERS
+	
+	save_data.day = env.day
+	save_data.time = env.time
+	
+	## PLAYER PARAMETERS
+	
 	save_data.player_position = player.position
 	save_data.player_rotation = player.rotation_target
-	save_data.date_updated = get_datetime()
+	
+	# TODO: add player inventory, status bars, and hidden parameters (temperature)
 	
 	verify_save_directory()
 	
-	if not FileAccess.file_exists(current_save_dir):
-		# Game save does not exist yet for some reason
-		save_data.date_created = get_datetime()
-		print("Save does not exist, creating new one at " + current_save_dir)
-	else:
-		print("Saving over " + current_save_dir)
+	print("Saving at " + current_save_dir)
 	
 	ResourceSaver.save(save_data, current_save_dir)
 	

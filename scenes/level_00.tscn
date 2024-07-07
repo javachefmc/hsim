@@ -99,6 +99,9 @@ spawn_limit = 5
 
 [node name="PostProcess" parent="." instance=ExtResource("2_voeam")]
 
+[node name="EnvironmentSystem" parent="." instance=ExtResource("15_vp24g")]
+transform = Transform3D(0.376014, 0, 0.926614, 0, 1, 0, -0.926614, 0, 0.376014, 8.41492, 2.6316, -17.0252)
+
 [node name="Players" type="Node3D" parent="."]
 
 [node name="Buildings" type="Node3D" parent="."]
@@ -297,9 +300,6 @@ transform = Transform3D(-4.61826, 0, -1.91616, 0, 5, 0, 1.91616, 0, -4.61826, 24
 
 [node name="LampStreet" parent="." instance=ExtResource("13_48qc5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4507, 0.125, -11.7688)
-
-[node name="EnvironmentSystem" parent="." instance=ExtResource("15_vp24g")]
-transform = Transform3D(0.376014, 0, 0.926614, 0, 1, 0, -0.926614, 0, 0.376014, 8.41492, 2.6316, -17.0252)
 
 [node name="watertest" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.71084, 0.551224, -22.7679)

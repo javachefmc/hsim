@@ -13,6 +13,8 @@ var paused : bool = false
 
 var player : Player
 
+@onready var environment : EnvironmentSystem = $EnvironmentSystem
+
 func _ready():
 	# instantiate and create a player
 	player = playerScene.instantiate()
@@ -23,3 +25,4 @@ func _ready():
 	
 	# capture mouse
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+

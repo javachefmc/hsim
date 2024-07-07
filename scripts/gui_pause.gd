@@ -21,10 +21,12 @@ func _on_btn_resume_pressed():
 	resume_pressed.emit() # WARNING: CAPTURED BY GUICONTROLLER
 
 func _on_btn_exit_pressed():
+	# WARNING: direct global function call
+	Global.save_current_world()
 	exit_pressed.emit() # WARNING: CAPTURED BY GUICONTROLLER
 
 func _on_btn_mp_host_pressed():
-	# WARNING: direct autoload function call
+	# WARNING: direct global function call
 	MP.host()
 	$VBoxContainer/btn_mp_host.visible = false
 

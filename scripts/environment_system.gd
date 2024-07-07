@@ -4,7 +4,9 @@ extends Node3D
 
 class_name EnvironmentSystem
 
+@export var day : int = 0
 @export var time : float
+
 @export var day_length : float = 200
 @export var start_time : float = 0.5
 var time_rate : float = 1 / day_length
@@ -21,10 +23,19 @@ var time_rate : float = 1 / day_length
 @onready var moon : DirectionalLight3D = $SunLight/MoonLight
 
 func _ready():
-	time = start_time
+	# Time should be passed to world from save on load
+	#time = start_time
+	pass
 
 func _process(delta):
-	time = $MultiplayerSynchronizer.time
+	# TODO: Fix this
+	#time = $MultiplayerSynchronizer.time
+	
+	# TODO: Make this work on multiplayer
+	if multiplayer.is_server():
+		time += time_rate * delta
+		if time > 1:
+			time = 0
 		
 	sun.rotation_degrees.x = time * 360 + 90
 	sun.light_color = sun_color.sample(time)
@@ -35,4 +46,7 @@ func _process(delta):
 	# Disable lights when they are off
 	# moon.visible = moon.light_energy > 0
 	
-	# TODO: add ambient light system
+	# TODO: add system for adjusting ambient light and autoexposure parameters
+	
+func set_time(time_to_set):
+	time = time_to_set

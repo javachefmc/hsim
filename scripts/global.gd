@@ -140,6 +140,7 @@ func save_current_world():
 	
 	save_data.player_position = player.position
 	save_data.player_rotation = player.rotation_target
+	save_data.player_inventory = player.inventory
 	
 	# TODO: add player inventory, status bars, and hidden parameters (temperature)
 	
@@ -147,8 +148,9 @@ func save_current_world():
 	
 	print("Saving at " + current_save_dir)
 	
+	# Tried bundling resources but that also bundles scripts
 	ResourceSaver.save(save_data, current_save_dir)
-		
+
 func verify_save_directory():
 	var dir = DirAccess.open("res://data")
 	if !dir.dir_exists(save_dir_name):
@@ -156,3 +158,45 @@ func verify_save_directory():
 		
 func get_datetime():
 	return Time.get_datetime_string_from_system(false, true)
+
+func create_and_load_save(new_world_name):
+	create_save(new_world_name)
+	load_save(new_world_name + save_ext)
+	
+func create_save(new_world_name):
+	var current_save_dir = save_dir + "/" + new_world_name + save_ext
+	
+	var save_data = SaveGame.new()
+	
+	# Try to load a save at this location
+	var old_save_data = ResourceLoader.load(current_save_dir) as SaveGame
+	# Check if it actually loads (this is bad and we will need to change the filename to save as)
+	if not old_save_data == null:
+		## SAVE PARAMETERS
+		print("WARNING: a save exists at this location. Overwriting...")
+
+	## SAVE PARAMETERS
+	
+	save_data.save_name = new_world_name
+	save_data.date_created = get_datetime()
+	save_data.date_updated = get_datetime()
+	
+	## ENVIRONMENT PARAMETERS
+	
+	save_data.day = 0
+	save_data.time = 0.5 # TODO: this should be the defatul time
+	
+	## PLAYER PARAMETERS
+	
+	save_data.player_position = Vector3(0, 3, 0) # TODO: set this to spawn position
+	save_data.player_rotation = Vector3(0, 0, 0)
+	save_data.player_inventory = PlayerInventory.new()
+	
+	# TODO: add player inventory, status bars, and hidden parameters (temperature)
+	
+	verify_save_directory()
+	
+	print("Saving at " + current_save_dir)
+	
+	# Tried bundling resources but that also bundles scripts
+	ResourceSaver.save(save_data, current_save_dir)

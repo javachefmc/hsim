@@ -56,8 +56,7 @@ func update_save_list():
 
 
 func _on_btn_new_pressed():
-	pass
-	#Global.load_scene("res://gui/gui_new_game.tscn")
+	Global.load_scene("res://gui/gui_new_game.tscn")
 
 func _on_btn_exit_pressed():
 	Global.load_scene("res://gui/main_menu.tscn")

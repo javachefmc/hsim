@@ -21,7 +21,7 @@ func _ready():
 	# instantiate and create a fader
 	fader = faderScene.instantiate()
 	add_child(fader)
-	fader.set_fade_speed(0.01)
+	fader.set_fade_speed(0.1)
 	fader.fade_out()
 	
 	Global.connect("game_start", fadeout)

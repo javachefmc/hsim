@@ -5,7 +5,7 @@ extends Control
 class_name GUI_Inventory
 
 # We will need to load this from a save file
-@onready var inv : Inventory = preload("res://inventory/inv_player_2.tres")
+@onready var inv : PlayerInventory = preload("res://inventory/inv_player_3.tres")
 @onready var gui_slots : Array = $GridContainer.get_children()
 
 @onready var gui_slot_scene = preload("res://gui/gui_inventory_slot.tscn")

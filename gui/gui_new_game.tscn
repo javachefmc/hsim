@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://y1fgu2iw5xij"]
+[gd_scene load_steps=8 format=3 uid="uid://y1fgu2iw5xij"]
 
 [ext_resource type="FontFile" uid="uid://brk4uxm3tjto7" path="res://assets/fonts/PolisRegular.otf" id="1_ej8ho"]
 [ext_resource type="Script" path="res://scripts/gui_new_game.gd" id="1_g1vll"]
@@ -12,6 +12,9 @@ font_size = 64
 [sub_resource type="LabelSettings" id="LabelSettings_3gvf1"]
 font = ExtResource("1_ej8ho")
 font_size = 28
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nf6q"]
+bg_color = Color(0.21216, 0.34, 0.1768, 1)
 
 [node name="gui_new_game" type="Control"]
 layout_mode = 3
@@ -67,7 +70,7 @@ label_settings = ExtResource("2_wexcl")
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme = ExtResource("3_42hv2")
-placeholder_text = "Save 1"
+placeholder_text = "My New World"
 clear_button_enabled = true
 
 [node name="lbl_difficulty" type="Label" parent="GridContainer"]
@@ -78,6 +81,7 @@ label_settings = ExtResource("2_wexcl")
 [node name="opt_difficulty" type="OptionButton" parent="GridContainer"]
 layout_mode = 2
 item_count = 3
+selected = 0
 popup/item_0/text = "Normal"
 popup/item_0/id = 0
 popup/item_1/text = "Hard"
@@ -103,17 +107,56 @@ label_settings = ExtResource("2_wexcl")
 [node name="txt_playername" type="LineEdit" parent="GridContainer"]
 layout_mode = 2
 theme = ExtResource("3_42hv2")
-placeholder_text = "Player"
+placeholder_text = "this does nothing"
 clear_button_enabled = true
+
+[node name="lbl_character2" type="Label" parent="GridContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Advanced"
+label_settings = SubResource("LabelSettings_3gvf1")
+vertical_alignment = 2
+
+[node name="- placeholder -3" type="Control" parent="GridContainer"]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="GridContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="lbl_playername2" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "some placeholder text"
+label_settings = ExtResource("2_wexcl")
+
+[node name="CheckButton2" type="CheckButton" parent="GridContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="lbl_playername3" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "some placeholder text"
+label_settings = ExtResource("2_wexcl")
+
+[node name="CheckButton3" type="CheckButton" parent="GridContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="lbl_playername4" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "some placeholder text"
+label_settings = ExtResource("2_wexcl")
 
 [node name="btn_create" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1058.0
-offset_top = 637.0
+offset_left = 949.0
+offset_top = 596.0
 offset_right = 1204.0
 offset_bottom = 672.0
 theme = ExtResource("3_42hv2")
-text = "create"
+theme_override_styles/normal = SubResource("StyleBoxFlat_4nf6q")
+disabled = true
+text = "enter"
 
 [node name="btn_returntomenu" type="Button" parent="."]
 layout_mode = 0
@@ -122,7 +165,8 @@ offset_top = 637.0
 offset_right = 216.0
 offset_bottom = 672.0
 theme = ExtResource("3_42hv2")
-text = "back"
+text = "cancel"
 
+[connection signal="text_changed" from="GridContainer/txt_worldname" to="." method="_on_txt_worldname_text_changed"]
 [connection signal="pressed" from="btn_create" to="." method="_on_btn_create_pressed"]
 [connection signal="pressed" from="btn_returntomenu" to="." method="_on_btn_returntomenu_pressed"]

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SaveGame" load_steps=3 format=3]
+
+[ext_resource type="Resource" path="res://inventory/inv_player_3.tres" id="1_ch1ts"]
+[ext_resource type="Script" path="res://scripts/save_game_resource.gd" id="2_787rc"]
+
+[resource]
+script = ExtResource("2_787rc")
+save_name = "Test 2"
+date_created = "2024-07-08 01:52:09"
+date_updated = "2024-07-08 01:55:44"
+time = 0.0703966
+day = 0
+player_position = Vector3(16.0272, 0.125835, -8.64982)
+player_rotation = Vector3(-0.0400002, -2.35602, 0)
+player_velocity = Vector3(0, 0, 0)
+player_inventory = ExtResource("1_ch1ts")

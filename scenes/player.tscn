@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://cj7y674njk2f"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_vgta6"]
-[ext_resource type="Resource" uid="uid://woaoaf7xjepx" path="res://inventory/inv_player_2.tres" id="2_g27uo"]
+[ext_resource type="Resource" uid="uid://db7pk1jvm16uv" path="res://inventory/inv_player_3.tres" id="2_a056y"]
 [ext_resource type="PackedScene" uid="uid://ckpl75ancx1nh" path="res://gui/gui_controller.tscn" id="3_1qdqc"]
 [ext_resource type="PackedScene" uid="uid://bg5snlonsknw5" path="res://gui/gui_HUD.tscn" id="3_1r74b"]
 [ext_resource type="Script" path="res://scripts/mp_input.gd" id="3_l5xqb"]
@@ -126,7 +126,7 @@ _data = {
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_vgta6")
-inventory = ExtResource("2_g27uo")
+inventory = ExtResource("2_a056y")
 
 [node name="PlayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 unique_name_in_owner = true

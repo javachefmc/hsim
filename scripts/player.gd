@@ -14,7 +14,7 @@ class_name Player
 
 ## ATTRIBUTES
 
-@export var inventory : Inventory
+@export var inventory : PlayerInventory
 
 const max_param : int = 100
 
@@ -77,6 +77,10 @@ func _ready():
 	animation_controller = get_node("Head/Camera3D/AnimationPlayer")
 	# Prevents selecting self when doing functions with raycast
 	raycast.add_exception(hitbox)
+	
+	# Get player inventory from world save.
+	# TODO: don't do this for multiplayer
+	update_inventory_from_save()
 
 func _process(delta):
 	super(delta) # Run the process function for FPController
@@ -94,6 +98,9 @@ func pick_object():
 		print("picking object")
 		collider.get_parent().collect()
 		# Add collector here to determine what to do with collected item
+
+func update_inventory_from_save():
+	pass
 
 func collect(item):
 	inventory.insert(item)

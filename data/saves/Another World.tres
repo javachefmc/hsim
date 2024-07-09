@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SaveGame" load_steps=3 format=3]
+
+[ext_resource type="Resource" path="res://inventory/inv_player_3.tres" id="1_lfsnc"]
+[ext_resource type="Script" path="res://scripts/save_game_resource.gd" id="2_2e4x6"]
+
+[resource]
+script = ExtResource("2_2e4x6")
+save_name = "Another World"
+date_created = "2024-07-09 12:33:20"
+date_updated = "2024-07-09 12:49:01"
+time = 0.64782
+day = 0
+player_position = Vector3(32.146, 0.125839, 12.0218)
+player_rotation = Vector3(-0.152, 4.968, 0)
+player_velocity = Vector3(0, 0, 0)
+player_inventory = ExtResource("1_lfsnc")

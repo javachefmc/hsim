@@ -7,10 +7,10 @@
 script = ExtResource("2_fedii")
 save_name = "Test"
 date_created = "2024-07-08 01:39:17"
-date_updated = "2024-07-08 01:55:39"
-time = 0.00986624
+date_updated = "2024-07-08 16:41:13"
+time = 0.210444
 day = 0
-player_position = Vector3(25.0202, -0.0399889, -28.8982)
-player_rotation = Vector3(-0.0960006, -3.704, 0)
+player_position = Vector3(5.8537, 0.125941, -13.5566)
+player_rotation = Vector3(-0.24, 0.443999, 0)
 player_velocity = Vector3(0, 0, 0)
 player_inventory = ExtResource("1_eotgx")

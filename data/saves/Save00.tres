@@ -7,10 +7,10 @@
 script = ExtResource("1_hqijs")
 save_name = "Someone Else's World"
 date_created = ""
-date_updated = "2024-07-08 01:57:10"
-time = 0.789343
+date_updated = "2024-07-09 12:41:39"
+time = 0.83041
 day = 0
-player_position = Vector3(4.45858, 0.125942, -10.2029)
-player_rotation = Vector3(-0.141203, 4.21199, 0)
+player_position = Vector3(8.39396, 0.125942, -8.76874)
+player_rotation = Vector3(-0.061203, 2.65599, 0)
 player_velocity = Vector3(0, 0, 0)
 player_inventory = ExtResource("1_bs82h")

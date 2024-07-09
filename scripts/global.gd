@@ -92,7 +92,7 @@ func load_save(file_name):
 		env.day = save.day
 		
 		player.position = save.player_position
-		player.rotation_target = save.player_rotation
+		player.set_rotation_immediate(save.player_rotation)
 		player.velocity = save.player_velocity
 		
 		#player.inventory = PlayerInventory.new()

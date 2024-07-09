@@ -1,7 +1,6 @@
 # Calculates attributes and functions for each player instance
 
 extends FPController
-
 class_name Player
 
 # vars grabbing things from Player scene

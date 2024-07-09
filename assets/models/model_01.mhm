@@ -1,0 +1,23 @@
+# Written by MakeHuman 1.2.0 final
+version v1.2.0
+camera 8.5 2.0 0.02849958298012343 0.8483139466312787 0.04899321984007212 1.3875000000000002
+modifier breast/BreastSize 0.500000
+modifier breast/BreastFirmness 0.500000
+modifier macrodetails/Gender 1.000000
+modifier macrodetails/Age 0.655000
+modifier macrodetails/African 0.000000
+modifier macrodetails/Asian 0.239000
+modifier macrodetails/Caucasian 0.761000
+modifier macrodetails-universal/Muscle 0.817000
+modifier macrodetails-universal/Weight 0.408000
+modifier macrodetails-height/Height 0.500000
+modifier macrodetails-proportions/BodyProportions 0.472000
+hair short04 e09bfd91-f83f-4f9a-ba8c-4635cd1ae0d8
+skeleton game_engine.mhskel
+eyes HighPolyEyes 2c12f43b-1303-432c-b7ce-d78346baf2e6
+clothes male_casualsuit05 02e8aa01-466f-4eb4-a375-e209cb4a77d8
+clothesHideFaces True
+skinMaterial skins/middleage_caucasian_male/middleage_caucasian_male.mhmat
+material short04 e09bfd91-f83f-4f9a-ba8c-4635cd1ae0d8 short04.mhmat
+material HighPolyEyes 2c12f43b-1303-432c-b7ce-d78346baf2e6 eyes/materials/brownlight.mhmat
+subdivide False

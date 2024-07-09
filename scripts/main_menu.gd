@@ -30,8 +30,8 @@ func _ready():
 func _process(delta):
 	mouse_pos = get_viewport().get_mouse_position()
 	
-	var pan_x = ((viewport_height / 2) - mouse_pos.y) 
-	var pan_y = ((viewport_height / 2) - mouse_pos.x)
+	var pan_x = ((float(viewport_height) / 2) - mouse_pos.y) 
+	var pan_y = ((float(viewport_height) / 2) - mouse_pos.x)
 	
 	viewport.rotation_degrees.x = lerp(viewport.rotation_degrees.x, pan_x * pan_amount, pan_speed)
 	viewport.rotation_degrees.y = lerp(viewport.rotation_degrees.y, pan_y * pan_amount, pan_speed)

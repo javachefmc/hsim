@@ -21,6 +21,7 @@ const AIR_RESISTANCE = 0.05
 var rotation_smooth : Vector3
 const rotation_speed = 0.004
 const rotation_damp = 30
+var allow_smooth_rotation = true
 
 # NEEDS TO BE SET AT RUNTIME
 
@@ -52,6 +53,19 @@ func _unhandled_input(event):
 			rotation_target.x -= event.relative.y * rotation_speed
 			rotation_target.x = clamp(rotation_target.x, -PI/2, PI/2)
 			rotation_target.y -= event.relative.x * rotation_speed
+
+func set_rotation_immediate(rotation_to_set : Vector3):
+	# sets rotation on teleports to avoid camera whipping 
+	pause_rotation_smoothing()
+	var timer = get_tree().create_timer(0.3, false)
+	timer.connect("timeout", resume_rotation_smoothing)
+	rotation_target = rotation_to_set
+
+func pause_rotation_smoothing():
+	allow_smooth_rotation = false
+	
+func resume_rotation_smoothing():
+	allow_smooth_rotation = true
 
 func _apply_movement_from_input(delta):
 	var movement_speed = SPEED;
@@ -94,7 +108,11 @@ func _apply_movement_from_input(delta):
 		rotation_target = %PlayerSynchronizer.rotation_target
 	
 	# Calculate look direction smoothly
-	rotation_smooth = rotation_smooth.lerp(rotation_target, delta * rotation_damp)
+	if allow_smooth_rotation:
+		rotation_smooth = rotation_smooth.lerp(rotation_target, delta * rotation_damp)
+	else:
+		rotation_smooth = rotation_target
+	
 	# Rotate character head and body. x: up-down, y: left-right
 	head.rotation.x = rotation_smooth.x
 	rotation.y = rotation_smooth.y

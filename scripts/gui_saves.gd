@@ -6,6 +6,8 @@ var saves : Array
 var save_dir = Global.save_dir
 
 @export var save_slot_scene : PackedScene = preload("res://gui/gui_save_slot.tscn")
+#
+#@export var dialog_scene := preload("res://gui/dialog.gd")
 
 var selected_save : String
 
@@ -67,14 +69,14 @@ func slot_pressed(file_name):
 	$right_panel.visible = true
 	
 	var save = ResourceLoader.load(Global.save_dir + "/" + file_name) as SaveGame
-	$right_panel/VBoxContainer/txt_save_name.text = save.save_name
-	$right_panel/VBoxContainer/lbl_day.text = "Day " + str(save.day)
-	$right_panel/VBoxContainer/lbl_save_path.text = file_name
-	$right_panel/VBoxContainer/GridContainer/lbl_date_last_played.text = save.date_updated
-	$right_panel/VBoxContainer/GridContainer/lbl_date_created.text = save.date_created
+	%txt_save_name.text = save.save_name
+	%lbl_day.text = "Day " + str(save.day)
+	%lbl_save_path.text = file_name
+	%lbl_date_last_played.text = save.date_updated
+	%lbl_date_created.text = save.date_created
 	
-	$VBoxContainer2/GridContainer/btn_delete.disabled = false
-	$VBoxContainer2/btn_load.disabled = false
+	%btn_delete.disabled = false
+	%btn_load.disabled = false
 
 func _on_btn_load_pressed():
 	if not selected_save == null:
@@ -86,3 +88,25 @@ func clear_rightpanel():
 	
 func _on_btn_open_saves_pressed():
 	OS.shell_show_in_file_manager(ProjectSettings.globalize_path(Global.save_dir))
+
+
+func _on_btn_delete_pressed():
+	var dialog : Dialog = load("res://gui/dialog.tscn").instantiate()
+	dialog.display(
+		"Are you sure you want to delete this world?\n[color=#FFCC00]" + selected_save + "[/color]\n\nThis action cannot be undone.",
+		"cancel", "delete",
+		_nothing, _delete_world.bind(selected_save)
+	)
+	
+	add_child(dialog)
+
+func _delete_world(save):
+	var address = Global.save_dir + "/" + save
+	print("Deleting world at " + address)
+	
+	DirAccess.remove_absolute(address)
+	
+	update_save_list()
+
+func _nothing():
+	pass

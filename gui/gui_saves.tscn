@@ -78,6 +78,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="txt_save_name" type="LineEdit" parent="right_panel/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/font = ExtResource("2_p65p0")
@@ -88,6 +89,7 @@ select_all_on_focus = true
 caret_blink = true
 
 [node name="lbl_day" type="Label" parent="right_panel/VBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_p65p0")
@@ -95,6 +97,7 @@ theme_override_font_sizes/font_size = 20
 text = "day"
 
 [node name="lbl_save_path" type="Label" parent="right_panel/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.544974, 0.544974, 0.544974, 1)
 theme_override_fonts/font = ExtResource("2_p65p0")
@@ -113,6 +116,7 @@ theme_override_font_sizes/font_size = 16
 text = "last played"
 
 [node name="lbl_date_last_played" type="Label" parent="right_panel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_p65p0")
@@ -128,12 +132,22 @@ theme_override_font_sizes/font_size = 16
 text = "created"
 
 [node name="lbl_date_created" type="Label" parent="right_panel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_p65p0")
 theme_override_font_sizes/font_size = 16
 text = "XX/XX/XXXX XX:XX"
 horizontal_alignment = 2
+
+[node name="btn_delete" type="Button" parent="right_panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+theme_override_fonts/font = ExtResource("2_p65p0")
+theme_override_font_sizes/font_size = 18
+disabled = true
+text = "delete save"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -157,58 +171,39 @@ grow_vertical = 2
 
 [node name="btn_new" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("4_lt4tw")
 text = "new game"
 
 [node name="btn_open_saves" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("4_lt4tw")
 text = "open save folder"
 
 [node name="btn_exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("4_lt4tw")
 text = "back"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 931.0
-offset_top = 190.0
-offset_right = 1248.0
-offset_bottom = 327.0
-grow_vertical = 2
-
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer2"]
-layout_mode = 2
-columns = 2
-
-[node name="btn_edit" type="Button" parent="VBoxContainer2/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("4_lt4tw")
-disabled = true
-text = "save"
-
-[node name="btn_delete" type="Button" parent="VBoxContainer2/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("4_lt4tw")
-disabled = true
-text = "delete"
-
-[node name="btn_load" type="Button" parent="VBoxContainer2"]
+[node name="btn_load" type="Button" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+offset_left = 931.0
+offset_top = 604.0
+offset_right = 1248.0
+offset_bottom = 684.0
+focus_mode = 0
 theme = ExtResource("4_lt4tw")
 theme_override_styles/normal = SubResource("StyleBoxFlat_dlmtb")
 disabled = true
 text = "play"
 
+[connection signal="pressed" from="right_panel/VBoxContainer/btn_delete" to="." method="_on_btn_delete_pressed"]
 [connection signal="pressed" from="VBoxContainer/btn_new" to="." method="_on_btn_new_pressed"]
-[connection signal="pressed" from="VBoxContainer/btn_open_saves" to="." method="_on_btn_open_saves_pressed"]
 [connection signal="pressed" from="VBoxContainer/btn_open_saves" to="." method="_on_btn_new_pressed"]
+[connection signal="pressed" from="VBoxContainer/btn_open_saves" to="." method="_on_btn_open_saves_pressed"]
 [connection signal="pressed" from="VBoxContainer/btn_exit" to="." method="_on_btn_exit_pressed"]
-[connection signal="pressed" from="VBoxContainer2/btn_load" to="." method="_on_btn_load_pressed"]
+[connection signal="pressed" from="btn_load" to="." method="_on_btn_load_pressed"]

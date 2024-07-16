@@ -5,7 +5,7 @@ extends Panel
 @onready var item_display : Sprite2D = $item_display
 @onready var item_count : Label = $item_count
 
-func update(slot : InvSlot):
+func update(slot : InvSlot) -> void:
 	if !slot.item:
 		# No item in slot
 		item_display.visible = false

@@ -3,17 +3,17 @@
 extends Inventory
 class_name PlayerInventory
 
-const num_slots = 30
+const num_slots : int = 30
 
-func _init():
+func _init() -> void:
 	#print("Initializing player inventory")
 	#slots.resize(num_slots)
 	#slots.fill(InvSlot.new())
 	pass
 
-func _ready():
+func _ready() -> void:
 	pass
 	
 
-func reset():
+func reset() -> void:
 	pass

@@ -2,7 +2,6 @@
 # Handles creation of initial player, setting start position, and general level start tasks
 
 extends Node
-
 class_name Level
 
 @export var playerScene : PackedScene
@@ -15,7 +14,7 @@ var player : Player
 
 @onready var environment : EnvironmentSystem = $EnvironmentSystem
 
-func _ready():
+func _ready() -> void:
 	# instantiate and create a player
 	player = playerScene.instantiate()
 	$Players.add_child(player)

@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://i15atgpfbldy"]
+
+[ext_resource type="Script" path="res://scripts/toast.gd" id="1_4lbyy"]
+[ext_resource type="FontFile" uid="uid://du68wj6r6jpyj" path="res://assets/fonts/libel-suit-rg.otf" id="1_vlsku"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6kaig"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+shadow_color = Color(0, 0, 0, 0.184314)
+shadow_size = 10
+shadow_offset = Vector2(0, 5)
+
+[node name="Toast" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4lbyy")
+
+[node name="text" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -157.0
+offset_right = 4.0
+offset_bottom = -122.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_vlsku")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/disabled = SubResource("StyleBoxFlat_6kaig")
+disabled = true
+text = "failed to load save"

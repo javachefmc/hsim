@@ -1,7 +1,6 @@
 # All parameters saved in the game save
 
 extends Resource
-
 class_name SaveGame
 
 ## SAVE METADATA

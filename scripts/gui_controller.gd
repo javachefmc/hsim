@@ -2,21 +2,21 @@
 # Includes keybinds
 
 extends Control
-
 class_name GUI_Controller
 
-var paused = false
-var inUI = false
-var inInventory = false
+var paused : bool = false
+var inUI : bool = false
+var inInventory : bool = false
 
 @onready var gui_pause : GUI_Pause = $"../gui_pause"
 @onready var gui_inventory : GUI_Inventory = $"../gui_inventory"
 
-func _ready():
+func _ready() -> void:
 	gui_pause.connect("resume_pressed", resume) # This allows button press to function identically to keybind
 	gui_pause.connect("exit_pressed", quitToTitle)
 
-func _process(delta):
+# this does not need to be process
+func _physics_process(delta: float) -> void:
 	# Handle all GUI-related keybinds
 	if Input.is_action_just_pressed("escape"):
 		if paused:
@@ -34,7 +34,7 @@ func _process(delta):
 				openInventory()
 
 # Shows or hides cursor
-func updateCursor():
+func updateCursor() -> void:
 	# Reduce all possible GUIs to one state
 	if inInventory: # or ...
 		inUI = true
@@ -49,25 +49,25 @@ func updateCursor():
 
 # GUI related functions
 
-func pause():
+func pause() -> void:
 	gui_pause.pause()
 	paused = true
 	updateCursor()
 	
-func resume():
+func resume() -> void:
 	gui_pause.resume()
 	paused = false
 	updateCursor()
 
-func openInventory():
+func openInventory() -> void:
 	gui_inventory.open()
 	inInventory = true
 	updateCursor()
 
-func closeInventory():
+func closeInventory() -> void:
 	gui_inventory.close()
 	inInventory = false
 	updateCursor()
 	
-func quitToTitle():
+func quitToTitle() -> void:
 	Global.try_quit_to_title()

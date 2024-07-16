@@ -7,10 +7,10 @@
 script = ExtResource("2_2e4x6")
 save_name = "Another World"
 date_created = "2024-07-09 12:33:20"
-date_updated = "2024-07-09 12:49:01"
-time = 0.64782
+date_updated = "2024-07-16 00:29:45"
+time = 0.556459
 day = 0
-player_position = Vector3(32.146, 0.125839, 12.0218)
-player_rotation = Vector3(-0.152, 4.968, 0)
+player_position = Vector3(0.621591, 0.125941, -4.62935)
+player_rotation = Vector3(-0.187999, 24.9559, 0)
 player_velocity = Vector3(0, 0, 0)
 player_inventory = ExtResource("1_lfsnc")

@@ -1,7 +1,6 @@
 # Day/night cycle, light intensity, sky color
 
 extends Node3D
-
 class_name EnvironmentSystem
 
 @export var day : int = 0
@@ -22,12 +21,12 @@ var time_rate : float = 1 / day_length
 @onready var sun : DirectionalLight3D = $SunLight
 @onready var moon : DirectionalLight3D = $SunLight/MoonLight
 
-func _ready():
+func _ready() -> void:
 	# Time should be passed to world from save on load
 	#time = start_time
 	pass
 
-func _process(delta):
+func _process(delta) -> void:
 	# TODO: Fix this
 	#time = $MultiplayerSynchronizer.time
 	
@@ -48,5 +47,5 @@ func _process(delta):
 	
 	# TODO: add system for adjusting ambient light and autoexposure parameters
 	
-func set_time(time_to_set):
+func set_time(time_to_set) -> void:
 	time = time_to_set

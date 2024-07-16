@@ -40,7 +40,7 @@ var cold : int = 0
 @export var stamina_run_affect : float = 0.4
 @export var stamina_jump_affect :int = 5
 @export var stamina_recover : float = 0.2
-var encumbered = false;
+var encumbered : bool = false;
 
 # hunger system
 
@@ -69,7 +69,7 @@ var body_temp : float = normal_temp
 
 signal healthChanged
 
-func _ready():
+func _ready() -> void:
 	# Set head node for FPController
 	head = get_node("Head")
 	# Set animation controller for FPController
@@ -81,56 +81,56 @@ func _ready():
 	# TODO: don't do this for multiplayer
 	update_inventory_from_save()
 
-func _process(delta):
+func _process(delta : float) -> void:
 	super(delta) # Run the process function for FPController
 
-func _unhandled_input(event):
+func _unhandled_input(event : InputEvent) -> void:
 	super(event) # Run input function for FPController
 	
 	# Perform use checks
 	if Input.is_action_just_pressed("use"):
 		pick_object()
 
-func pick_object():
-	var collider = raycast.get_collider()
+func pick_object() -> void:
+	var collider : Node = raycast.get_collider()
 	if collider != null and collider is Area3D:
 		print("picking object")
 		collider.get_parent().collect()
 		# Add collector here to determine what to do with collected item
 
-func update_inventory_from_save():
+func update_inventory_from_save() -> void:
 	pass
 
-func collect(item):
+func collect(item) -> void:
 	inventory.insert(item)
 
 # Parameter changing systems
 
-func changeHealth(amount):
+func changeHealth(amount : int) -> void:
 	health += amount
 	health = clamp(health, 0, max_param)
 	if health == 0: die()
 	
-func changeStamina(amount):
+func changeStamina(amount : int) -> void:
 	stamina += amount
 	stamina = clamp(stamina, 0, max_param)
 	
-func changeFood(amount):
+func changeFood(amount : int) -> void:
 	food += amount
 	food = clamp(food, 0, max_param)
 	
-func changeWater(amount):
+func changeWater(amount : int) -> void:
 	water += amount
 	water = clamp(water, 0, max_param)
 	
-func die():
+func die() -> void:
 	health = 0 # set again in case of direct function call
 	#healthChanged.emit()
 	print("You have died")
 	# Present death gui depending on game mode
 	
 	
-func temperature_tick():
+func temperature_tick() -> void:
 	# A local temp is calculated at position of the player.
 	# Player parameters have a "comfort" range; inside of this, nothing should happen
 	# When temp is outside this range, their body temperature goes up or down
@@ -149,7 +149,7 @@ func temperature_tick():
 		body_temp = lerp(body_temp, normal_temp, temp_recover)
 	
 	# Update heat and cold bars
-	var temp_delta = body_temp - normal_temp
+	var temp_delta : float = body_temp - normal_temp
 	
 	if round(temp_delta) > 0:
 		cold = 0
@@ -163,7 +163,7 @@ func temperature_tick():
 		
 	changeHealth(-abs(temp_delta) * temp_damage)
 
-func hunger_tick():
+func hunger_tick() -> void:
 	# Hunger constantly falls off
 	# Different food items should have different saturation amounts
 	# Saturation pauses food reduction for the same duration that an equivalent food value takes to diminish

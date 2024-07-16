@@ -2,70 +2,69 @@
 
 extends Node
 
+# type changeable
 var current_scene = null
 
-const user_dir = "user://"
-const res_dir = "res://"
-const save_dir_name = "saves"
-const save_dir = "res://data/" + save_dir_name
-const save_ext = ".tres" # THIS HAS TO BE .TRES
+const user_dir : String = "user://"
+var res_dir : String = "res://"
+const save_dir_name : String = "saves"
+var save_dir : String = res_dir + "data/" + save_dir_name
+const save_ext : String = ".tres" # THIS HAS TO BE .TRES
 
 var current_save : String = "Save00.tres"
 
 # If/when multiplayer is developed, these variables will be important
-var canChangeScenes = true
-var canQuit = true
+var canChangeScenes : bool = true
+var canQuit : bool = true
 
 signal game_start
 
-func _ready():
-	var dir = DirAccess.open(user_dir)
+func _ready() -> void:
+	var dir := DirAccess.open(user_dir)
 	dir.make_dir(save_dir)
 	
-	var root = get_tree().root
+	var root := get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
 
-func load_scene(path):
+func load_scene(path : String) -> void:
 	call_deferred("_load_scene_manual", path)
 	
-func _load_scene_manual(path):
+func _load_scene_manual(path : String) -> void:
 	var scene : Node = get_current_scene()
 	get_tree().root.add_child(load(path).instantiate())
 	scene.queue_free()
 
-func _load_scene_immediate(path):
+func _load_scene_immediate(path : String) -> void:
 	# While this works without bugs, it causes a gray flash
 	get_tree().change_scene_to_file(path)
 
-func _load_scene_packed(scene):
+func _load_scene_packed(scene : PackedScene) -> void:
 	scene.instantiate()
 	get_tree().change_scene_to_packed(scene)
 
 # This will be deprecated when save system is implemented
-func start_game():
+func start_game() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	game_start.emit()
 	await get_tree().create_timer(0.3).timeout
 	
 	load_scene("res://scenes/level_00.tscn")
 
-func try_quit_to_title():
+func try_quit_to_title() -> void:
 	if canChangeScenes:
 		load_scene("res://gui/main_menu.tscn")
 
-func try_quit():
+func try_quit() -> void:
 	if canQuit:
 		get_tree().quit()
 		
-func get_current_scene():
-	var root = get_tree().root
+func get_current_scene() -> Node:
+	var root := get_tree().root
 	return root.get_child(root.get_child_count() - 1)
 
-func load_save(file_name):
+func load_save(file_name : String) -> void:
+	print("Attempting to load " + file_name)
 	current_save = file_name
-	
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-	game_start.emit()
 	
 	#TODO: LOAD ALL DATA HERE
 	
@@ -73,6 +72,9 @@ func load_save(file_name):
 	var save = ResourceLoader.load(Global.save_dir + "/" + current_save) as SaveGame
 	# Check that it actually loaded
 	if not save == null:
+		
+		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+		game_start.emit()
 		
 		var world = load("res://scenes/level_00.tscn").instantiate()
 		
@@ -85,8 +87,8 @@ func load_save(file_name):
 		
 		# Setters
 		
-		var env = world.get_node("EnvironmentSystem")
-		var player = world.get_node("Players/Player")
+		var env : EnvironmentSystem = world.get_node("EnvironmentSystem")
+		var player : Player = world.get_node("Players/Player")
 		
 		env.time = save.time
 		env.day = save.day
@@ -101,19 +103,21 @@ func load_save(file_name):
 		
 	else:
 		print("FAILED TO LOAD SAVE")
+		show_toast("failed to load save")
 	
-func save_current_world():
+func save_current_world() -> void:
 	print("Saving world...")
+	show_toast("saving world")
 	
 	var player : Player = get_current_scene().get_node("Players").get_child(0)
 	var env : EnvironmentSystem = get_current_scene().get_node("EnvironmentSystem")
 	
 	var current_save_dir = save_dir + "/" + current_save
 	
-	var save_data = SaveGame.new()
+	var save_data := SaveGame.new()
 	
 	# Load previous save
-	var old_save_data = ResourceLoader.load(current_save_dir) as SaveGame
+	var old_save_data := ResourceLoader.load(current_save_dir) as SaveGame
 	# Check that it actually loaded.
 	# With the current setup, it is necessary that this loads in order to not lose parameters like the save name
 	if not old_save_data == null:
@@ -151,19 +155,19 @@ func save_current_world():
 	# Tried bundling resources but that also bundles scripts
 	ResourceSaver.save(save_data, current_save_dir)
 
-func verify_save_directory():
-	var dir = DirAccess.open("res://data")
+func verify_save_directory() -> void:
+	var dir := DirAccess.open("res://data")
 	if !dir.dir_exists(save_dir_name):
 		dir.make_dir(save_dir_name)
 		
-func get_datetime():
+func get_datetime() -> String:
 	return Time.get_datetime_string_from_system(false, true)
 
-func create_and_load_save(new_world_name):
+func create_and_load_save(new_world_name : String) -> void:
 	create_save(new_world_name)
 	load_save(new_world_name + save_ext)
 	
-func create_save(new_world_name):
+func create_save(new_world_name : String) -> void:
 	var current_save_dir = save_dir + "/" + new_world_name + save_ext
 	
 	var save_data = SaveGame.new()
@@ -197,6 +201,12 @@ func create_save(new_world_name):
 	verify_save_directory()
 	
 	print("Saving at " + current_save_dir)
+	show_toast("creating save")
 	
 	# Tried bundling resources but that also bundles scripts
 	ResourceSaver.save(save_data, current_save_dir)
+	
+func show_toast(message : String, duration : float = 3) -> void:
+	var toast : Toast = load("res://gui/toast.tscn").instantiate()
+	get_current_scene().add_child(toast)
+	toast.display(message, duration)

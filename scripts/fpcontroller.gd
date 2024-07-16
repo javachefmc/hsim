@@ -1,7 +1,6 @@
 # Handles player physics
 
 extends CharacterBody3D
-
 class_name FPController
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -9,19 +8,19 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 # HARDCODED PARAMETERS
 
 # translation
-const SPEED = 3.0
-const RUN_MULT = 1.75
-const JUMP_VELOCITY = 4.5
-const ACCEL = 0.1
-const FRICTION = 0.3
-const AIR_RESISTANCE = 0.05
+const SPEED : float = 3.0
+const RUN_MULT : float = 1.75
+const JUMP_VELOCITY : float = 4.5
+const ACCEL : float = 0.1
+const FRICTION : float = 0.3
+const AIR_RESISTANCE : float = 0.05
 
 # rotation
 @export var rotation_target : Vector3
 var rotation_smooth : Vector3
-const rotation_speed = 0.004
-const rotation_damp = 30
-var allow_smooth_rotation = true
+const rotation_speed : float = 0.004
+const rotation_damp : float = 30
+var allow_smooth_rotation : bool = true
 
 # NEEDS TO BE SET AT RUNTIME
 
@@ -33,7 +32,7 @@ var allow_smooth_rotation = true
 		player_id = id
 		%InputSynchronizer.set_multiplayer_authority(id)
 
-func _process(delta):
+func _process(delta : float) -> void:
 	# apply this on server side only.
 	if multiplayer.is_server():
 		_apply_movement_from_input(delta)
@@ -44,7 +43,7 @@ func _process(delta):
 		velocity = Vector3(0,0,0)
 		rotation_target = Vector3(0,0,0)
 	
-func _unhandled_input(event):
+func _unhandled_input(event : InputEvent) -> void:
 	# Calculate camera rotation
 	
 	# we need to separate this from client and server
@@ -54,22 +53,23 @@ func _unhandled_input(event):
 			rotation_target.x = clamp(rotation_target.x, -PI/2, PI/2)
 			rotation_target.y -= event.relative.x * rotation_speed
 
-func set_rotation_immediate(rotation_to_set : Vector3):
+func set_rotation_immediate(rotation_to_set : Vector3) -> void:
 	# sets rotation on teleports to avoid camera whipping 
 	pause_rotation_smoothing()
-	var timer = get_tree().create_timer(0.3, false)
+	var timer := get_tree().create_timer(0.3, false)
 	timer.connect("timeout", resume_rotation_smoothing)
 	rotation_target = rotation_to_set
 
-func pause_rotation_smoothing():
+func pause_rotation_smoothing() -> void:
 	allow_smooth_rotation = false
 	
-func resume_rotation_smoothing():
+func resume_rotation_smoothing() -> void:
 	allow_smooth_rotation = true
 
-func _apply_movement_from_input(delta):
-	var movement_speed = SPEED;
-	var running = false;
+func _apply_movement_from_input(delta) -> void:
+	# WARNING: this is unused?
+	var movement_speed := SPEED
+	var running := false
 	
 	# Adjust speed if running
 	if Input.is_action_pressed("run"):
@@ -83,9 +83,9 @@ func _apply_movement_from_input(delta):
 	# Handle jump
 	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
-	var input_dir = %InputSynchronizer.input_direction
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	var input_dir : Vector2 = %InputSynchronizer.input_direction
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	# Player is inputting movement controls
 	if direction:

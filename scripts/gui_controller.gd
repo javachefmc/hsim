@@ -8,8 +8,8 @@ var paused : bool = false
 var inUI : bool = false
 var inInventory : bool = false
 
-@onready var gui_pause : GUI_Pause = $"../gui_pause"
-@onready var gui_inventory : GUI_Inventory = $"../gui_inventory"
+@onready var gui_pause : GUI_Pause = %gui_pause
+@onready var gui_inventory : GUI_Inventory = %gui_inventory
 
 func _ready() -> void:
 	gui_pause.connect("resume_pressed", resume) # This allows button press to function identically to keybind
@@ -45,7 +45,6 @@ func updateCursor() -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if not paused and not inUI:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
 
 # GUI related functions
 

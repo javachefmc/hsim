@@ -168,10 +168,14 @@ libraries = {
 }
 speed_scale = 1.4
 
-[node name="gui_controller" parent="." instance=ExtResource("3_1qdqc")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="gui_HUD" parent="." instance=ExtResource("3_1r74b")]
+[node name="gui_controller" parent="CanvasLayer" instance=ExtResource("3_1qdqc")]
 
-[node name="gui_inventory" parent="." instance=ExtResource("4_4nla7")]
+[node name="gui_HUD" parent="CanvasLayer" instance=ExtResource("3_1r74b")]
 
-[node name="gui_pause" parent="." instance=ExtResource("3_xy4hs")]
+[node name="gui_inventory" parent="CanvasLayer" instance=ExtResource("4_4nla7")]
+unique_name_in_owner = true
+
+[node name="gui_pause" parent="CanvasLayer" instance=ExtResource("3_xy4hs")]
+unique_name_in_owner = true

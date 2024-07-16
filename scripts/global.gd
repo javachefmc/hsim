@@ -6,10 +6,13 @@ extends Node
 var current_scene = null
 
 const user_dir : String = "user://"
-var res_dir : String = "res://"
+const res_dir : String = "res://"
 const save_dir_name : String = "saves"
-var save_dir : String = res_dir + "data/" + save_dir_name
+const save_dir : String = user_dir + "data/" + save_dir_name
 const save_ext : String = ".tres" # THIS HAS TO BE .TRES
+
+# WARNING: this is obviously a security issue
+const SECURITY_KEY = "debug"
 
 var current_save : String = "Save00.tres"
 
@@ -20,11 +23,22 @@ var canQuit : bool = true
 signal game_start
 
 func _ready() -> void:
+	verify_save_directory_2()
+	
+	
+	
 	var dir := DirAccess.open(user_dir)
 	dir.make_dir(save_dir)
 	
 	var root := get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
+
+func verify_save_directory_2() -> void:
+	DirAccess.make_dir_absolute(save_dir)
+	
+	
+	
+	
 
 func load_scene(path : String) -> void:
 	call_deferred("_load_scene_manual", path)
@@ -104,6 +118,57 @@ func load_save(file_name : String) -> void:
 	else:
 		print("FAILED TO LOAD SAVE")
 		show_toast("failed to load save")
+	
+func save_function_new(path : String) -> void:
+	var file := FileAccess.open_encrypted_with_pass(path, FileAccess.WRITE, SECURITY_KEY)
+	
+	if file == null:
+		print(FileAccess.get_open_error())
+		return
+	
+	var data = {
+		#"player_data" : {
+			#"health" : player_data.health,
+			#"position" : {
+				#"x": player_data.global_position.x,
+				#"y": player_data.global_position.y,
+				#"z": player_data.global_position.z
+			#},
+			#"velocity" : {
+				#"x": player_data.global_position.x,
+				#"y": player_data.global_position.y,
+				#"z": player_data.global_position.z
+			#},
+		#}
+	}
+	
+	var json_string = JSON.stringify(data, "\t")
+	file.store_string(json_string)
+	file.close()
+
+func load_function_new(path : String) -> void:
+	if FileAccess.file_exists(path):
+		
+		var file := FileAccess.open_encrypted_with_pass(path, FileAccess.READ, SECURITY_KEY)
+		
+		if file == null:
+			print(FileAccess.get_open_error())
+			return
+		
+		var content := file.get_as_text()
+		file.close()
+		
+		var data = JSON.parse_string(content)
+		if data == null:
+			printerr("Data cannot be parsed as json string: %s" % [content])
+			return
+			
+		# instantiate a new player data
+		# fill out all of the player datas
+		# assign player data to player
+		
+	else:
+		printerr("Cannot open file at %s" % [path])
 	
 func save_current_world() -> void:
 	print("Saving world...")

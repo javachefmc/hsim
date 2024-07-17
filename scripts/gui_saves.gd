@@ -31,8 +31,8 @@ func update_save_list() -> void:
 			if not dir.current_is_dir():
 				# Check that the file ends in .tres
 				if file_name.ends_with(Global.save_ext):
-					# Try to load this file as a SaveGame
-					var this_save : SaveGame = ResourceLoader.load(Global.save_dir + "/" + file_name) as SaveGame
+					# Try to load this file as a SaveData
+					var this_save : SaveData = ResourceLoader.load(Global.save_dir + "/" + file_name) as SaveData
 					# Check that it actually loaded
 					if not this_save == null:
 						saves.append(file_name)
@@ -68,7 +68,7 @@ func slot_pressed(file_name : String) -> void:
 	
 	$right_panel.visible = true
 	
-	var save := ResourceLoader.load(Global.save_dir + "/" + file_name) as SaveGame
+	var save := ResourceLoader.load(Global.save_dir + "/" + file_name) as SaveData
 	%txt_save_name.text = save.save_name
 	%lbl_day.text = "Day " + str(save.day)
 	%lbl_save_path.text = file_name
@@ -89,6 +89,8 @@ func clear_rightpanel() -> void:
 #TODO: Debug why this doesn't work with user://
 func _on_btn_open_saves_pressed() -> void:
 	OS.shell_show_in_file_manager(ProjectSettings.globalize_path(Global.save_dir))
+	#OS.shell_show_in_file_manager(ProjectSettings.globalize_path("user://"))
+	print(Global.save_dir)
 
 func _on_btn_delete_pressed() -> void:
 	var dialog : Dialog = load("res://gui/dialog.tscn").instantiate()

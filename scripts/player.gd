@@ -3,6 +3,15 @@
 extends FPController
 class_name Player
 
+signal params_changed(params : Dictionary)
+signal health_changed(value : int)
+signal food_changed(value : int)
+signal water_changed(value : int)
+signal stamina_changed(value : int)
+
+# Set playerdata first
+var player_data : PlayerData = PlayerData.new()
+
 # vars grabbing things from Player scene
 
 @onready var camera : Camera3D = $Head/Camera3D
@@ -10,6 +19,8 @@ class_name Player
 
 @onready var raycast : RayCast3D = $Head/Raycast
 @onready var hitbox : Area3D = $Head/PlayerHitbox
+
+@onready var hunger_tick: Timer = $HungerTick
 
 ## ATTRIBUTES
 
@@ -19,10 +30,22 @@ const max_param : int = 100
 
 ## Adjustable parameters (appear as bars)
 
-@export var health : int = max_param
-@export var food : int = max_param
-@export var water : int = max_param
-@export var stamina : int = max_param
+@export var health : int = player_data.health:
+	set(val):
+		health = val
+		health_changed.emit(val)
+@export var food : int = player_data.food:
+	set(val):
+		food = val
+		food_changed.emit(val)
+@export var water : int = player_data.water:
+	set(val):
+		water = val
+		water_changed.emit(val)
+@export var stamina : int = player_data.stamina:
+	set(val):
+		stamina = val
+		stamina_changed.emit(val)
 
 ## Reactive parameters (appear as bars)
 
@@ -58,7 +81,8 @@ var saturation : int = 0 # saturation delays how long hunger reduction is paused
 
 var local_temp : float = 72
 const normal_temp : float = 98.6
-var body_temp : float = normal_temp
+@export var body_temp : float = normal_temp # THIS SHOULD BE SET
+
 @export var temp_midpoint : float = 72
 @export var temp_comfort_range : float = 8
 @export var temp_affect : float = 0.2	# debuff
@@ -66,8 +90,6 @@ var body_temp : float = normal_temp
 @export var temp_damage : float = 1
 
 ## SIGNALS
-
-signal healthChanged
 
 func _ready() -> void:
 	# Set head node for FPController
@@ -80,6 +102,13 @@ func _ready() -> void:
 	# Get player inventory from world save.
 	# TODO: don't do this for multiplayer
 	update_inventory_from_save()
+	
+	params_changed.emit({
+		"health": health,
+		"food": food,
+		"water": water,
+		"stamina": stamina
+	})
 
 func _process(delta : float) -> void:
 	super(delta) # Run the process function for FPController
@@ -90,6 +119,15 @@ func _unhandled_input(event : InputEvent) -> void:
 	# Perform use checks
 	if Input.is_action_just_pressed("use"):
 		pick_object()
+	
+	if Input.is_action_just_pressed("1"): # debug take damage
+		change_health(-10)
+	if Input.is_action_just_pressed("2"): # debug eat food
+		change_food(10)
+	if Input.is_action_just_pressed("3"): # debug heal
+		change_health(10)
+	if Input.is_action_just_pressed("4"): # debug reduce food
+		change_food(-10)
 
 func pick_object() -> void:
 	var collider : Node = raycast.get_collider()
@@ -106,26 +144,27 @@ func collect(item) -> void:
 
 # Parameter changing systems
 
-func changeHealth(amount : int) -> void:
+func change_health(amount : int) -> void:
 	health += amount
-	health = clamp(health, 0, max_param)
+	if amount < 0:
+		animation_controller.play("damage")
+	#health = clamp(health, 0, max_param)
 	if health == 0: die()
 	
-func changeStamina(amount : int) -> void:
+func change_stamina(amount : int) -> void:
 	stamina += amount
-	stamina = clamp(stamina, 0, max_param)
+	#stamina = clamp(stamina, 0, max_param)
 	
-func changeFood(amount : int) -> void:
+func change_food(amount : int) -> void:
 	food += amount
-	food = clamp(food, 0, max_param)
+	#food = clamp(food, 0, max_param)
 	
-func changeWater(amount : int) -> void:
+func change_water(amount : int) -> void:
 	water += amount
-	water = clamp(water, 0, max_param)
+	#water = clamp(water, 0, max_param)
 	
 func die() -> void:
 	health = 0 # set again in case of direct function call
-	#healthChanged.emit()
 	print("You have died")
 	# Present death gui depending on game mode
 	
@@ -161,9 +200,9 @@ func temperature_tick() -> void:
 		heat = 0
 		cold = 0
 		
-	changeHealth(-abs(temp_delta) * temp_damage)
+	change_health(-abs(temp_delta) * temp_damage)
 
-func hunger_tick() -> void:
+func _on_hunger_tick_timeout() -> void:
 	# Hunger constantly falls off
 	# Different food items should have different saturation amounts
 	# Saturation pauses food reduction for the same duration that an equivalent food value takes to diminish
@@ -175,3 +214,6 @@ func hunger_tick() -> void:
 		# diminish saturation instead of hunger
 		saturation -= saturation_affect
 		if saturation < 0: saturation = 0
+		
+	if food <= 0:
+		change_health(-5)

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="SaveGame" load_steps=3 format=3]
 
-[ext_resource type="Resource" path="res://inventory/inv_player_3.tres" id="1_eotgx"]
-[ext_resource type="Script" path="res://scripts/save_game_resource.gd" id="2_fedii"]
+[ext_resource type="Resource" uid="uid://db7pk1jvm16uv" path="res://inventory/inv_player_3.tres" id="1_eotgx"]
+[ext_resource type="Script" path="res://scripts/save_data.gd" id="2_fedii"]
 
 [resource]
 script = ExtResource("2_fedii")

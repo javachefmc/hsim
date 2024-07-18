@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://bssqn6osvqek2"]
+
+[ext_resource type="FontFile" uid="uid://brk4uxm3tjto7" path="res://assets/fonts/PolisRegular.otf" id="1_himju"]
+[ext_resource type="Script" path="res://scripts/gui_main_menu.gd" id="1_jacty"]
+[ext_resource type="Theme" uid="uid://doghuh3mastvc" path="res://gui/theme_mainmenubutton.tres" id="2_hk1y0"]
+
+[sub_resource type="Theme" id="Theme_q5i1f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rghbe"]
+font = ExtResource("1_himju")
+font_size = 180
+font_color = Color(0.858824, 0.439216, 0.439216, 1)
+
+[node name="MainMenuControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = -1078.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jacty")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 168.0
+offset_right = 550.0
+offset_bottom = 280.0
+theme = SubResource("Theme_q5i1f")
+text = "Rock Bottom"
+label_settings = SubResource("LabelSettings_rghbe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 329.0
+offset_right = 433.0
+offset_bottom = 939.0
+
+[node name="btn_play" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_hk1y0")
+text = "continue"
+alignment = 0
+
+[node name="btn_saves" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_hk1y0")
+text = "saves"
+alignment = 0
+
+[node name="btn_options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_hk1y0")
+text = "options"
+alignment = 0
+
+[node name="btn_mp_connect" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_hk1y0")
+text = "multiplayer"
+alignment = 0
+
+[node name="btn_exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_hk1y0")
+text = "exit"
+alignment = 0
+
+[connection signal="mouse_entered" from="VBoxContainer/btn_play" to="." method="_on_btn_play_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/btn_play" to="." method="_on_btn_play_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/btn_saves" to="." method="_on_btn_saves_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/btn_saves" to="." method="_on_btn_saves_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/btn_options" to="." method="_on_btn_options_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/btn_options" to="." method="_on_btn_options_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/btn_mp_connect" to="." method="_on_btn_mp_connect_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/btn_mp_connect" to="." method="_on_btn_mp_connect_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/btn_exit" to="." method="_on_btn_exit_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/btn_exit" to="." method="_on_btn_exit_pressed"]

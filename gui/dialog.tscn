@@ -55,6 +55,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 15
 
 [node name="text" type="RichTextLabel" parent="PanelContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("1_hs0wv")
 theme_override_font_sizes/normal_font_size = 18
@@ -64,6 +65,7 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="btn_cancel" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -72,6 +74,7 @@ theme_override_fonts/font = ExtResource("1_hs0wv")
 theme_override_font_sizes/font_size = 18
 
 [node name="btn_ok" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -80,5 +83,7 @@ theme_override_fonts/font = ExtResource("1_hs0wv")
 theme_override_font_sizes/font_size = 18
 
 [connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]
+[connection signal="focus_entered" from="PanelContainer/VBoxContainer/HBoxContainer/btn_cancel" to="." method="_on_btn_cancel_focus_entered"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/btn_cancel" to="." method="_on_btn_cancel_pressed"]
+[connection signal="focus_entered" from="PanelContainer/VBoxContainer/HBoxContainer/btn_ok" to="." method="_on_btn_ok_focus_entered"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/btn_ok" to="." method="_on_btn_ok_pressed"]

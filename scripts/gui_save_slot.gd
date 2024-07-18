@@ -24,3 +24,6 @@ func update() -> void:
 
 func _on_pressed() -> void:
 	slot_selected.emit(file_name)
+
+func _on_mouse_entered() -> void:
+	Global.play_sound("ui-hover")

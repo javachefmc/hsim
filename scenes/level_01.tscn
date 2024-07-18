@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://fpnfiec3kt5f" path="res://images/texture/floor1.png" id="4_3x2vj"]
 [ext_resource type="PackedScene" uid="uid://cj7y674njk2f" path="res://scenes/player.tscn" id="4_iffes"]
 [ext_resource type="Texture2D" uid="uid://dtyisxxhp876j" path="res://images/texture/generic.png" id="5_37k43"]
-[ext_resource type="AudioStream" uid="uid://qsrdwjewrdje" path="res://sounds/GP2-3-loop.wav" id="6_0tx11"]
+[ext_resource type="AudioStream" uid="uid://qsrdwjewrdje" path="res://sound/GP2-3-loop.wav" id="6_0tx11"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhbhj"]
 albedo_color = Color(0.215686, 0.215686, 0.215686, 1)

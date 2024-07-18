@@ -22,10 +22,15 @@ var canQuit : bool = true
 
 signal game_start
 
+# Sound players
+var sfx_music : GlobalAudio = GlobalAudio.new()
+var sfx_ui : GlobalAudio = GlobalAudio.new()
+
+# Config data
+var config : ConfigData = ConfigData.new()
+
 func _ready() -> void:
 	verify_save_directory_2()
-	
-	
 	
 	var dir := DirAccess.open(user_dir)
 	if dir:
@@ -36,6 +41,40 @@ func _ready() -> void:
 	
 	var root := get_tree().root
 	current_scene = root.get_child(root.get_child_count() - 1)
+	
+	# Create global sound players
+	add_child(sfx_music)
+	sfx_music.stream = load("res://sound/GP2-3.wav")
+	#sfx_music.play() # This should happen once per game, but ideally when within the main menu loop
+	
+	add_child(sfx_ui)
+	sfx_ui.stream = load("res://sound/ui-click-2.wav")
+	sfx_ui.max_polyphony = 10
+	
+	# Fix a bug with fullscreen having a gray border
+	# THIS IS A KNOWN ISSUE WITH GODOT 4.0
+	# We just set it to black so it isn't as visible
+	RenderingServer.set_default_clear_color(Color.BLACK)
+
+func play_sound(sound : String) -> void:
+	match sound:
+		"ui-hover":
+			sfx_ui.stream = load("res://sound/ui-click-2.wav")
+			sfx_ui.play()
+		"ui-press":
+			sfx_ui.stream = load("res://sound/ui-accept.wav")
+			sfx_ui.play()
+		_:
+			printerr("Global audio: unrecognized sound " + sound)
+
+func set_volume(type : String, db : float) -> void:
+	match type:
+		"ui":
+			sfx_ui.volume_db = db
+		"music":
+			sfx_music.volume_db = db
+		_:
+			printerr("Global audio: unrecognized sound type " + type)
 
 func verify_save_directory_2() -> void:
 	var error := DirAccess.make_dir_absolute(save_dir)
@@ -43,8 +82,9 @@ func verify_save_directory_2() -> void:
 		pass
 	else:
 		printerr("Error in creating save directory: ", error)
-	
-	
+
+func show_options() -> void:
+	get_tree().root.add_child(load("res://gui/gui_options.tscn").instantiate())
 
 func load_scene(path : String) -> void:
 	call_deferred("_load_scene_manual", path)
@@ -67,7 +107,6 @@ func start_game() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	game_start.emit()
 	await get_tree().create_timer(0.3).timeout
-	
 	load_scene("res://scenes/level_00.tscn")
 
 func try_quit_to_title() -> void:
@@ -84,6 +123,10 @@ func get_current_scene() -> Node:
 
 func load_save(file_name : String) -> void:
 	verify_save_directory_2()
+	
+	# Stop the title screen music!
+	# Maybe try to fade this out in the future
+	sfx_music.stop()
 	
 	print("Attempting to load " + file_name)
 	current_save = file_name
@@ -296,3 +339,10 @@ func show_toast(message : String, duration : float = 3) -> void:
 	var toast : Toast = load("res://gui/toast.tscn").instantiate()
 	get_current_scene().add_child(toast)
 	toast.display(message, duration)
+
+func show_dialog(text : String, text_cancel : String, text_ok : String, callback_cancel : Callable, callback_ok : Callable):
+	var dialog : Dialog = load("res://gui/dialog.tscn").instantiate()
+	dialog.display(
+		text, text_cancel, text_ok, callback_cancel, callback_ok
+	)
+	get_current_scene().add_child(dialog)

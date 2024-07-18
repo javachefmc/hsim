@@ -201,9 +201,13 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_dlmtb")
 disabled = true
 text = "play"
 
+[connection signal="mouse_entered" from="right_panel/VBoxContainer/btn_delete" to="." method="_on_btn_delete_mouse_entered"]
 [connection signal="pressed" from="right_panel/VBoxContainer/btn_delete" to="." method="_on_btn_delete_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/btn_new" to="." method="_on_btn_new_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/btn_new" to="." method="_on_btn_new_pressed"]
-[connection signal="pressed" from="VBoxContainer/btn_open_saves" to="." method="_on_btn_new_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/btn_open_saves" to="." method="_on_btn_open_saves_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/btn_open_saves" to="." method="_on_btn_open_saves_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/btn_exit" to="." method="_on_btn_exit_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/btn_exit" to="." method="_on_btn_exit_pressed"]
+[connection signal="mouse_entered" from="btn_load" to="." method="_on_btn_load_mouse_entered"]
 [connection signal="pressed" from="btn_load" to="." method="_on_btn_load_pressed"]

@@ -1,3 +1,5 @@
+# Handles in-game HUD gui
+
 extends Control
 
 @onready var bar_hp: ProgressBar = %bar_hp

@@ -1,3 +1,5 @@
+# Simple system for creating toast notifications
+
 extends Control
 class_name Toast
 

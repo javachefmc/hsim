@@ -58,12 +58,15 @@ func update_save_list() -> void:
 
 
 func _on_btn_new_pressed() -> void:
+	generic_button_press()
 	Global.load_scene("res://gui/gui_new_game.tscn")
 
 func _on_btn_exit_pressed() -> void:
+	generic_button_press()
 	Global.load_scene("res://gui/main_menu.tscn")
 	
 func slot_pressed(file_name : String) -> void:
+	generic_button_press()
 	selected_save = file_name
 	
 	$right_panel.visible = true
@@ -79,6 +82,7 @@ func slot_pressed(file_name : String) -> void:
 	%btn_load.disabled = false
 
 func _on_btn_load_pressed() -> void:
+	generic_button_press()
 	if not selected_save == null:
 		Global.load_save(selected_save)
 
@@ -88,19 +92,18 @@ func clear_rightpanel() -> void:
 	
 #TODO: Debug why this doesn't work with user://
 func _on_btn_open_saves_pressed() -> void:
+	generic_button_press()
 	OS.shell_show_in_file_manager(ProjectSettings.globalize_path(Global.save_dir))
 	#OS.shell_show_in_file_manager(ProjectSettings.globalize_path("user://"))
 	print(Global.save_dir)
 
 func _on_btn_delete_pressed() -> void:
-	var dialog : Dialog = load("res://gui/dialog.tscn").instantiate()
-	dialog.display(
+	generic_button_press()
+	Global.show_dialog(
 		"Are you sure you want to delete this world?\n[color=#FFCC00]" + selected_save + "[/color]\n\nThis action cannot be undone.",
 		"cancel", "delete",
 		_nothing, _delete_world.bind(selected_save)
 	)
-	
-	add_child(dialog)
 
 func _delete_world(save) -> void:
 	var address : String = Global.save_dir + "/" + save
@@ -112,3 +115,25 @@ func _delete_world(save) -> void:
 
 func _nothing() -> void:
 	pass
+	
+
+func generic_button_press() -> void:
+	Global.play_sound("ui-press")
+
+func generic_button_hover() -> void:
+	Global.play_sound("ui-hover")
+
+func _on_btn_new_mouse_entered() -> void:
+	generic_button_hover()
+
+func _on_btn_open_saves_mouse_entered() -> void:
+	generic_button_hover()
+
+func _on_btn_exit_mouse_entered() -> void:
+	generic_button_hover()
+
+func _on_btn_load_mouse_entered() -> void:
+	generic_button_hover()
+
+func _on_btn_delete_mouse_entered() -> void:
+	generic_button_hover()

@@ -18,6 +18,10 @@ var fader : Fader
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Play music
+	if not Global.sfx_music.playing:
+		Global.sfx_music.play()
+	
 	# instantiate and create a fader
 	fader = faderScene.instantiate()
 	add_child(fader)

@@ -4,7 +4,11 @@ extends Control
 
 @export var new_world_name : String = "Unknown"
 
+func generic_button_press() -> void:
+	Global.play_sound("ui-press")
+
 func _on_btn_returntomenu_pressed() -> void:
+	generic_button_press()
 	Global.load_scene("res://gui/main_menu.tscn")
 
 # We could check this in _process but using signal is better
@@ -18,5 +22,6 @@ func _on_txt_worldname_text_changed(text : String) -> void:
 		$btn_create.disabled = true
 
 func _on_btn_create_pressed() -> void:
+	generic_button_press()
 	# TODO: Check if a world exists with the name. If it does, append a counter
 	Global.create_and_load_save(new_world_name)

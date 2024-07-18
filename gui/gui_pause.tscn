@@ -48,28 +48,37 @@ horizontal_alignment = 1
 
 [node name="btn_resume" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("3_cuxnd")
 text = "resume"
 
 [node name="btn_options" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("3_cuxnd")
 text = "options"
 
 [node name="btn_mp_host" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("3_cuxnd")
 text = "open to LAN"
 
 [node name="btn_exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 mouse_default_cursor_shape = 2
 theme = ExtResource("3_cuxnd")
 text = "save and exit"
 
+[connection signal="mouse_entered" from="VBoxContainer/btn_resume" to="." method="_on_btn_resume_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/btn_resume" to="." method="_on_btn_resume_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/btn_options" to="." method="_on_btn_options_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/btn_options" to="." method="_on_btn_options_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/btn_mp_host" to="." method="_on_btn_mp_host_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/btn_mp_host" to="." method="_on_btn_mp_host_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/btn_exit" to="." method="_on_btn_exit_mouse_entered"]
 [connection signal="pressed" from="VBoxContainer/btn_exit" to="." method="_on_btn_exit_pressed"]

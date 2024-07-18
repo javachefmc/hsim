@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://fmdowrh8nimv"]
+
+[ext_resource type="Script" path="res://scripts/gui_button.gd" id="1_b66e6"]
+
+[node name="GUIButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_b66e6")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

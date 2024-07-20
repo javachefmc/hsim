@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://eqpi0y8jnbmg"]
+
+[ext_resource type="Texture2D" uid="uid://d0wuc3mbij2tl" path="res://images/texture/grass-1024.jpg" id="1_ul8yx"]
+
+[resource]
+albedo_color = Color(0.423651, 0.423651, 0.423651, 1)
+albedo_texture = ExtResource("1_ul8yx")
+metallic_specular = 0.0
+uv1_scale = Vector3(-0.18, -0.18, -0.18)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2

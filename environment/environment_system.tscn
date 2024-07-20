@@ -12,11 +12,11 @@ metadata/_snap_enabled = true
 metadata/_snap_count = 12
 
 [sub_resource type="Curve" id="Curve_p65r8"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.102151, 0), 0.0, 0.0, 0, 0, Vector2(0.502304, 1), 0.0, 0.0, 0, 0, Vector2(0.895161, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.248521, 0), 0.0, 0.0, 0, 0, Vector2(0.502304, 1), 0.0, 0.0, 0, 0, Vector2(0.751479, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="Curve" id="Curve_jo6r3"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.0994624, 1), 0.0, 0.0, 0, 0, Vector2(0.498328, 0), 0.0, 0.0, 0, 0, Vector2(0.895161, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.245562, 1), 0.0, 0.0, 0, 0, Vector2(0.498328, 0), 0.0, 0.0, 0, 0, Vector2(0.754438, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_masro"]
@@ -39,15 +39,21 @@ environment = ExtResource("2_wc13u")
 camera_attributes = ExtResource("3_45dn0")
 
 [node name="SunLight" type="DirectionalLight3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 light_intensity_lux = 19875.8
 light_temperature = 5500.0
 light_energy = 20.0
 light_angular_distance = 0.5
 shadow_enabled = true
+shadow_reverse_cull_face = true
 
-[node name="MoonLight" type="DirectionalLight3D" parent="SunLight"]
-transform = Transform3D(-1, 4.23517e-22, -8.74228e-08, 4.23516e-22, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+
+[node name="MoonLight" type="DirectionalLight3D" parent="Node3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 light_intensity_lux = 5000.0
 light_color = Color(0.788235, 0.85098, 0.85098, 1)
 light_energy = 50.0
@@ -57,6 +63,6 @@ light_angular_distance = 0.03
 shadow_enabled = true
 shadow_bias = 0.068
 shadow_normal_bias = 4.72
-shadow_blur = 3.0
+shadow_reverse_cull_face = true
 directional_shadow_blend_splits = true
 directional_shadow_max_distance = 353.3

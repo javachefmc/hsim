@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://byol2at3u8cnh"]
+
+[ext_resource type="Texture2D" uid="uid://l0rpyp4gwabt" path="res://images/texture/asphalt_1.jpg" id="1_xw7x3"]
+
+[resource]
+albedo_color = Color(0.593134, 0.593134, 0.593133, 1)
+albedo_texture = ExtResource("1_xw7x3")
+metallic_specular = 0.0
+uv1_scale = Vector3(0.17, 0.17, 0.17)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2

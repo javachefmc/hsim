@@ -1,0 +1,18 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://chd8od1u1t8to"]
+
+[ext_resource type="Texture2D" uid="uid://bwp6y7j2mn8fj" path="res://images/texture/garbage.jpg" id="1_3o18k"]
+[ext_resource type="Texture2D" uid="uid://ckkqvb1a7gxlg" path="res://images/texture/noise-normal.jpg" id="2_jo3pw"]
+
+[resource]
+albedo_color = Color(0.292114, 0.327222, 0.390532, 1)
+albedo_texture = ExtResource("1_3o18k")
+metallic_specular = 0.0
+normal_enabled = true
+normal_scale = 6.3
+normal_texture = ExtResource("2_jo3pw")
+heightmap_texture = ExtResource("2_jo3pw")
+uv1_scale = Vector3(0.74, 0.74, 0.74)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 2.29739
+uv1_world_triplanar = true
+texture_filter = 2

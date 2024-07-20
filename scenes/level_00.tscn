@@ -1,8 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://cnlxest2c1gq6"]
+[gd_scene load_steps=25 format=3 uid="uid://cnlxest2c1gq6"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_gjpq4"]
 [ext_resource type="PackedScene" uid="uid://dudw68ejiro7g" path="res://gui/postprocess.tscn" id="2_voeam"]
-[ext_resource type="PackedScene" uid="uid://cj7y674njk2f" path="res://scenes/player.tscn" id="4_1rq8o"]
 [ext_resource type="Texture2D" uid="uid://fpnfiec3kt5f" path="res://images/texture/floor1.png" id="5_20uf5"]
 [ext_resource type="Texture2D" uid="uid://dtyisxxhp876j" path="res://images/texture/generic.png" id="6_0qjgb"]
 [ext_resource type="PackedScene" uid="uid://dsw75u1giin2x" path="res://scenes/collectibles/collectible.tscn" id="7_rty7g"]
@@ -89,7 +88,6 @@ orientation = 1
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_gjpq4")
-playerScene = ExtResource("4_1rq8o")
 start_pos = Vector3(0, 0.7, -3)
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]

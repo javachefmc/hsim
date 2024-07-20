@@ -45,11 +45,13 @@ func _ready() -> void:
 	# Create global sound players
 	add_child(sfx_music)
 	sfx_music.stream = load("res://sound/GP2-3.wav")
+	sfx_music.volume_db = -6
 	#sfx_music.play() # This should happen once per game, but ideally when within the main menu loop
 	
 	add_child(sfx_ui)
 	sfx_ui.stream = load("res://sound/ui-click-2.wav")
 	sfx_ui.max_polyphony = 10
+	sfx_ui.volume_db = -4
 	
 	# Fix a bug with fullscreen having a gray border
 	# THIS IS A KNOWN ISSUE WITH GODOT 4.0

@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://512uo1kqw0sb"]
+
+[ext_resource type="Texture2D" uid="uid://wn7txsn3kpcj" path="res://images/texture/leaves.jpg" id="1_5ige8"]
+
+[resource]
+albedo_color = Color(0.62329, 0.530227, 0.585769, 1)
+albedo_texture = ExtResource("1_5ige8")
+metallic_specular = 0.0
+subsurf_scatter_texture = ExtResource("1_5ige8")
+backlight_enabled = true
+uv1_scale = Vector3(0.435, 0.435, 0.435)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
